@@ -1,7 +1,3 @@
-from django.db import models
-
-# Create your models here.
-
 # This is an auto-generated Django model module.
 # You'll have to do the following manually to clean this up:
 #   * Rearrange models' order
@@ -56,6 +52,18 @@ class AuthUser(models.Model):
     class Meta:
         managed = False
         db_table = 'auth_user'
+
+
+class AuthUser2(models.Model):
+    username = models.CharField(max_length=255)
+    gender = models.CharField(max_length=255, blank=True, null=True)
+    birthdate = models.CharField(db_column='birthDate', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    edudegree = models.CharField(db_column='eduDegree', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    usertages = models.CharField(db_column='userTages', max_length=255, blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'auth_user2'
 
 
 class AuthUserGroups(models.Model):
@@ -120,3 +128,4 @@ class DjangoSession(models.Model):
     class Meta:
         managed = False
         db_table = 'django_session'
+
