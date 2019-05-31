@@ -53,3 +53,17 @@ def register(request):
         else:
             User.objects.create_user(username=username,email=email,password=password)
             return HttpResponse(1)#注册成功
+
+
+
+# 上传文件
+def UploadVideo(request):
+    if request.method=='POST':
+        obj=request.FILES.get('upload_video')
+    if not obj:
+        return HttpResponse('no files for upload')
+    file=open('../UploadVideos/'+"video"+".mp4",'wb+')
+    for chunk in obj.chunks():
+        file.write(chunk)
+    file.close()
+    return HttpResponse("upload success")
