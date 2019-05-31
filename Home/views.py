@@ -62,7 +62,7 @@ def UploadVideo(request):
         obj=request.FILES.get('upload_video')
     if not obj:
         return HttpResponse('no files for upload')
-    file=open('../UploadVideos/'+"video"+".mp4",'wb+')
+    file=open("../UploadVideos/"+"video"+".mp4",'wb+')
     for chunk in obj.chunks():
         file.write(chunk)
     file.close()
