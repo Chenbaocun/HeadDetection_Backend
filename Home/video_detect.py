@@ -30,9 +30,9 @@ MODEL_NAME = 'ssd_mobilenet_v1_coco_2017_11_17'  # [30,21]  best
 
 def video_detect(input_video,output_video):
     # Path to frozen detection graph. This is the actual model that is used for the object detection.
-    PATH_TO_CKPT = os.path.join('faster_rcnn_inception_v2_coco_2018_01_28', 'frozen_inference_graph.pb')
+    PATH_TO_CKPT = './detected_model/frozen_inference_graph.pb'
     # List of the strings that is used to add correct label for each box.
-    PATH_TO_LABELS = os.path.join('data', 'head_label_map.pbtxt')
+    PATH_TO_LABELS = './detected_model/head_label_map.pbtxt'
     NUM_CLASSES = 1
 
     # Load a (frozen) Tensorflow model into memory.
