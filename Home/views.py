@@ -66,10 +66,10 @@ def UploadVideo(request):
     if not obj:
         return HttpResponse('no files for upload')
     # 在Linux上从这访问上一级是一个.
-    file=open("/root/UploadVideos/"+filename+".mp4","wb+")
+    file=open("/root/UploadVideos/"+filename,"wb+")
     for chunk in obj.chunks():
         file.write(chunk)
     file.close()
-    new_thread = threading.Thread(target=video_detect, name="video_detect", args=("/root/UploadVideos/"+filename+".mp4","/root/DetectedVideos/"+filename+".mp4",))
+    new_thread = threading.Thread(target=video_detect, name="video_detect", args=("/root/UploadVideos/"+filename,"/root/DetectedVideos/"+filename,))
     new_thread.start()
     return HttpResponse("upload success")
