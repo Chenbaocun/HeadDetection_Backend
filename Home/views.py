@@ -64,20 +64,22 @@ def UploadVideo(request):
         obj=request.FILES.get('upload_video')
         filename=str(request.user)+"###"+str(obj.name)
         a = Uploadvideos.objects.filter(filename=filename,username=request.user)
-        print("从数据库中查到了"+a)
+        # print("从数据库中查到了"+a)
         if(a):
             # 否则还是认为是成功了
             return HttpResponse('this file you have uploded!!',status=500)
         else:
             Uploadvideos.objects.create(username=request.user,hascalculated=0,uploaddate=str(datetime.datetime.now()),filename=filename)
-        # print(obj.name)
-    if not obj:
-        return HttpResponse('no files for upload')
-    # 在Linux上从这访问上一级是一个.
-    file=open("/root/UploadVideos/"+filename,"wb+")
-    for chunk in obj.chunks():
-        file.write(chunk)
-    file.close()
-    new_thread = threading.Thread(target=video_detect, name="video_detect", args=("/root/UploadVideos/"+filename,"/root/DetectedVideos/"+filename,filename,request.user,))
-    new_thread.start()
-    return HttpResponse("upload success")
+            # print(obj.name)
+            if not obj:
+                return HttpResponse('no files for upload')
+            # 在Linux上从这访问上一级是一个.
+            file = open("/root/UploadVideos/" + filename, "wb+")
+            for chunk in obj.chunks():
+                file.write(chunk)
+            file.close()
+            new_thread = threading.Thread(target=video_detect, name="video_detect", args=(
+            "/root/UploadVideos/" + filename, "/root/DetectedVideos/" + filename, filename, request.user,))
+            new_thread.start()
+            return HttpResponse("upload success")
+
