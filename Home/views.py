@@ -82,4 +82,13 @@ def UploadVideo(request):
             "/root/UploadVideos/" + filename, "/root/DetectedVideos/" + filename, filename, request.user,))
             new_thread.start()
             return HttpResponse("upload success")
+def beforeUploadVideo(request):
+    if request.method=='POST':
+        obj=request.FILES.get('upload_video')
+        filename=str(request.user)+"###"+str(obj.name)
+        a = Uploadvideos.objects.filter(filename=filename,username=request.user)
+        # print("从数据库中查到了"+a)
+        if(a):
+            # 否则还是认为是成功了
+            return HttpResponse('this file you have uploded!!',status=500)
 

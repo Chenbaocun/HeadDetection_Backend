@@ -27,5 +27,6 @@ urlpatterns = [
     path('Index/', views.Index),
     path('Logout/', views.Logout),
     path('register/', views.register),
+    path('beforeUploadVideo/', views.beforeUploadVideo),
     path('UploadVideo/', views.UploadVideo),
 ]
