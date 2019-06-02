@@ -68,6 +68,6 @@ def UploadVideo(request):
     for chunk in obj.chunks():
         file.write(chunk)
     file.close()
-    new_thread = threading.Thread(target=video_detect, name="video_detect", args=('./UploadedVideos/video.mp4','./DetectedVideos',))
+    new_thread = threading.Thread(target=video_detect, name="video_detect", args=('./UploadedVideos/video.mp4','./DetectedVideos/video.mp4',))
     new_thread.start()
     return HttpResponse("upload success")
