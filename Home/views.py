@@ -1,9 +1,11 @@
+import threading
 from django.contrib import auth
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render
 from .models import *
+from .video_detect import video_detect
 # Create your views here.
 def Index(request):
     if request.method == 'POST':
@@ -55,15 +57,17 @@ def register(request):
             return HttpResponse(1)#注册成功
 
 
-
 # 上传文件
 def UploadVideo(request):
     if request.method=='POST':
         obj=request.FILES.get('upload_video')
     if not obj:
         return HttpResponse('no files for upload')
-    file=open("../UploadVideos/"+"video"+".mp4","wb+")
+    # 在Linux上从这访问上一级是一个.
+    file=open("./UploadVideos/"+"video"+".mp4","wb+")
     for chunk in obj.chunks():
         file.write(chunk)
     file.close()
+    new_thread = threading.Thread(target=video_detect, name="video_detect", args=('./UploadedVideos/video.mp4','./DetectedVideos',))
+    new_thread.start()
     return HttpResponse("upload success")
