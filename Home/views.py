@@ -64,8 +64,10 @@ def UploadVideo(request):
         obj=request.FILES.get('upload_video')
         filename=str(request.user)+"###"+str(obj.name)
         a = Uploadvideos.objects.filter(filename=filename,username=request.user)
+        print("从数据库中查到了"+a)
         if(a):
-            return HttpResponse('this file you have uploded!!')
+            # 否则还是认为是成功了
+            return HttpResponse('this file you have uploded!!',status=500)
         else:
             Uploadvideos.objects.create(username=request.user,hascalculated=0,uploaddate=str(datetime.datetime.now()),filename=filename)
         # print(obj.name)
