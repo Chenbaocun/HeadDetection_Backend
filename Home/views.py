@@ -67,7 +67,7 @@ def UploadVideo(request):
         if(a):
             return HttpResponse('this file you have uploded!!')
         else:
-            Uploadvideos.objects.create(username=request.user,hascalculated=0,uploaddate=str(datetime.datetime.now()))
+            Uploadvideos.objects.create(username=request.user,hascalculated=0,uploaddate=str(datetime.datetime.now()),filename=filename)
         # print(obj.name)
     if not obj:
         return HttpResponse('no files for upload')
