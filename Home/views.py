@@ -90,5 +90,6 @@ def beforeUploadVideo(request):
         # print("从数据库中查到了"+a)
         if(a):
             # 否则还是认为是成功了
-            return HttpResponse('this file you have uploded!!',status=500)
-
+            return HttpResponse(1)
+        else:
+            return HttpResponse()
