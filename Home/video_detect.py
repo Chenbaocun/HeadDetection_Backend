@@ -15,7 +15,7 @@ import cv2
 from matplotlib import pyplot as plt
 
 start = time.time()
-os.chdir('~/tensorFlow_models/models/research/object_detection')#切换目录
+os.chdir('~/tensorflow_models/models/research/object_detection')#切换目录
 
 # This is needed since the notebook is stored in the object_detection folder.
 sys.path.append("..")
