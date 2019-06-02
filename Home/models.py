@@ -129,3 +129,12 @@ class DjangoSession(models.Model):
         managed = False
         db_table = 'django_session'
 
+class Uploadvideos(models.Model):
+    username = models.CharField(max_length=255)
+    hascalculated = models.CharField(max_length=255)
+    uploaddate = models.CharField(max_length=255, blank=True, null=True)
+    filename = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'uploadvideos'

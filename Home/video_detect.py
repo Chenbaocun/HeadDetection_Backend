@@ -13,7 +13,7 @@ import sys
 import tensorflow as tf
 import cv2
 from matplotlib import pyplot as plt
-
+from .models import Uploadvideos
 start = time.time()
 # os.chdir('/root/detect_models')#切换目录
 
@@ -28,7 +28,7 @@ from object_detection.utils import visualization_utils as vis_util
 # What model to download.
 MODEL_NAME = 'ssd_mobilenet_v1_coco_2017_11_17'  # [30,21]  best
 
-def video_detect(input_video,output_video):
+def video_detect(input_video,output_video,filename,username,):
     # Path to frozen detection graph. This is the actual model that is used for the object detection.
     # PATH_TO_CKPT = os.path.join('frozen_inference_graph.pb')
     PATH_TO_CKPT = '/root/detect_models/frozen_inference_graph.pb'
@@ -117,5 +117,6 @@ def video_detect(input_video,output_video):
                     break
 
     end = time.time()
+    Uploadvideos.objects.filter(username=username,filename=filename).update(hascalculated=1)
     print("视频计算结束，时间为: ", end - start)
     return 1
