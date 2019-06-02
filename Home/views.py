@@ -84,8 +84,8 @@ def UploadVideo(request):
             return HttpResponse("upload success")
 def beforeUploadVideo(request):
     if request.method=='POST':
-        obj=request.FILES.get('upload_video')
-        filename=str(request.user)+"###"+str(obj.name)
+        filename=request.POST.get('filename')
+        filename=str(request.user)+"###"+str(filename)
         a = Uploadvideos.objects.filter(filename=filename,username=request.user)
         # print("从数据库中查到了"+a)
         if(a):
