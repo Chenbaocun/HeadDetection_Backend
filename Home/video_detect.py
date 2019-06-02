@@ -15,10 +15,10 @@ import cv2
 from matplotlib import pyplot as plt
 
 start = time.time()
-os.chdir('root/tensorflow_models/models/research/object_detection')#切换目录
+os.chdir('root/detect_models')#切换目录
 
 # This is needed since the notebook is stored in the object_detection folder.
-# sys.path.append("..")
+sys.path.append("..")
 
 # Object detection imports
 from object_detection.utils import label_map_util
@@ -30,10 +30,10 @@ MODEL_NAME = 'ssd_mobilenet_v1_coco_2017_11_17'  # [30,21]  best
 
 def video_detect(input_video,output_video):
     # Path to frozen detection graph. This is the actual model that is used for the object detection.
-    PATH_TO_CKPT = os.path.join('faster_rcnn_inception_v2_coco_2018_01_28', 'frozen_inference_graph.pb')
+    PATH_TO_CKPT = os.path.join('frozen_inference_graph.pb')
     # PATH_TO_CKPT = './detected_model/frozen_inference_graph.pb'
     # List of the strings that is used to add correct label for each box.
-    PATH_TO_LABELS = os.path.join('data', 'head_label_map.pbtxt')
+    PATH_TO_LABELS = os.path.join('head_label_map.pbtxt')
     NUM_CLASSES = 1
 
     # Load a (frozen) Tensorflow model into memory.
