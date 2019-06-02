@@ -61,8 +61,8 @@ def register(request):
 def UploadVideo(request):
     if request.method=='POST':
         obj=request.FILES.get('upload_video')
-        filename=str(obj.name).split('_')[0]
-        print(obj.name)
+        filename=str(request.user)+"_"+str(obj.name).split('_')[0]
+        # print(obj.name)
     if not obj:
         return HttpResponse('no files for upload')
     # 在Linux上从这访问上一级是一个.
@@ -70,6 +70,6 @@ def UploadVideo(request):
     for chunk in obj.chunks():
         file.write(chunk)
     file.close()
-    new_thread = threading.Thread(target=video_detect, name="video_detect", args=("./UploadVideos/"+filename+".mp4","/root/DetectedVideos/"+filename+".mp4",))
+    new_thread = threading.Thread(target=video_detect, name="video_detect", args=("/root/UploadVideos/"+filename+".mp4","/root/DetectedVideos/"+filename+".mp4",))
     new_thread.start()
     return HttpResponse("upload success")
