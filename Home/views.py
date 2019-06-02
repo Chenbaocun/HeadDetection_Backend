@@ -63,7 +63,7 @@ def UploadVideo(request):
     if request.method=='POST':
         obj=request.FILES.get('upload_video')
         filename=str(request.user)+"###"+str(obj.name)
-        a = Uploadvideos.objects.filter(filename=filename)
+        a = Uploadvideos.objects.filter(filename=filename,username=request.user)
         if(a):
             return HttpResponse('this file you have uploded!!')
         else:
