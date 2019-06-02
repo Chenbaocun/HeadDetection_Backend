@@ -61,7 +61,7 @@ def register(request):
 def UploadVideo(request):
     if request.method=='POST':
         obj=request.FILES.get('upload_video')
-        filename=str(request.user)+"_"+str(obj.name).split('_')[0]
+        filename=str(request.user)+"_"+str(obj.name)
         # print(obj.name)
     if not obj:
         return HttpResponse('no files for upload')
