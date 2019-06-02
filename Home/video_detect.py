@@ -79,8 +79,8 @@ def video_detect(input_video,output_video,filename,username,):
             # We convert the resolutions from float to integer.
             frame_width = int(vidcap.get(3))
             frame_height = int(vidcap.get(4))  # 1920*1080
-            # Define the codec and create VideoWriter object.The output is stored in 'outpy.avi' file.
-            out_video = cv2.VideoWriter(output_video, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'), 29,
+            # Define the codec and create VideoWriter object.The output is stored in 'outpy.avi' file.  'M', 'J', 'P', 'G'
+            out_video = cv2.VideoWriter(output_video, cv2.VideoWriter_fourcc('X', 'V', 'I', 'D'), 29,
                                         (frame_width, frame_height))
 
             while (True):
