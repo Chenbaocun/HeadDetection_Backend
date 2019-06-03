@@ -7,6 +7,7 @@ from django.shortcuts import render
 from .models import *
 from .video_detect import video_detect
 import datetime
+import simplejson
 # Create your views here.
 def Index(request):
     if request.method == 'POST':
@@ -109,4 +110,4 @@ def myupload(request):
                 row['status']='排队计算中..'
             context.append(row)
         print(context)
-        return HttpResponse(context)
+        return HttpResponse(simplejson.dumps(context))
