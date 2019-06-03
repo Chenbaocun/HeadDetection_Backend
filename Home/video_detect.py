@@ -109,7 +109,8 @@ def video_detect(input_video,output_video,filename,username,):
                     plt.imshow(image_np)
                     # Write the frame into the file 'output.avi'
                     out_video.write(image_np)
-
+                    #测试是否是这导致的内存泄漏
+                    plt.close()
 
 
                 # Break the loop
