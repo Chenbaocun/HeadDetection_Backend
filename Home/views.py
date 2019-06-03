@@ -93,3 +93,19 @@ def beforeUploadVideo(request):
             return HttpResponse(1)
         else:
             return HttpResponse()
+
+def myupload(request):
+    if request.method=='POST':
+        user=request.user
+        queryResult = Uploadvideos.objects.filter(username=user)
+        context=[]
+        for i in queryResult:
+            row = {}
+            row['date']=i.uploaddate
+            row['filename']=str(i.filename).split('###')[0]+".mp4"
+            if i.hascalculated=='1':
+                row['status']='计算完成'
+            else:
+                row['status']='排队计算中..'
+            context.append(row)
+        return HttpResponse(context)

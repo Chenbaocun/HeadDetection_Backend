@@ -4,8 +4,6 @@
 # @Email : chenbaocun@emails.bjut.edu.cn
 # @File : video_detect.py
 # @Software: PyCharm
-
-
 import time
 import numpy as np
 import os
@@ -15,7 +13,6 @@ import cv2
 from matplotlib import pyplot as plt
 from .models import Uploadvideos
 start = time.time()
-# os.chdir('/root/detect_models')#切换目录
 
 # This is needed since the notebook is stored in the object_detection folder.
 sys.path.append("..")
@@ -111,8 +108,6 @@ def video_detect(input_video,output_video,filename,username,):
                     out_video.write(image_np)
                     #测试是否是这导致的内存泄漏
                     plt.close()
-
-
                 # Break the loop
                 else:
                     break
