@@ -13,8 +13,8 @@ def Index(request):
         session_key=request.session.session_key
         a = request.session.exists(session_key)#在db中验证
         if(a):
-            print(request.user)#用户名
-            print(request.session.get('_auth_user_id'))  # 获取用户ID
+            # print(request.user)#用户名
+            # print(request.session.get('_auth_user_id'))  # 获取用户ID
             return HttpResponse(str(request.user))
         else:
             return HttpResponse()

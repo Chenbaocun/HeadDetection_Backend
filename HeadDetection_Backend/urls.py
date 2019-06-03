@@ -29,5 +29,5 @@ urlpatterns = [
     path('register/', views.register),
     path('beforeUploadVideo/', views.beforeUploadVideo),
     path('UploadVideo/', views.UploadVideo),
-    path('UploadVideo/', views.myupload),
+    path('myupload/', views.myupload),
 ]
