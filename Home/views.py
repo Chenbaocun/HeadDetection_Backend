@@ -112,4 +112,4 @@ def myupload(request):
             context.append("#$")
         context={"data":context}
         print(context)
-        return HttpResponse(simplejson.dump(context))
+        return HttpResponse(simplejson.dumps(context))
