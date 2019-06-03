@@ -110,6 +110,6 @@ def myupload(request):
                 row['status']='排队计算中..'
             context.append(row)
             context.append("#$")
-            context={"data":context}
+        context={"data":context}
         print(context)
         return HttpResponse(simplejson.dump(context))
