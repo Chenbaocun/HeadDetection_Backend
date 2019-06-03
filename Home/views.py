@@ -103,7 +103,7 @@ def myupload(request):
         for i in queryResult:
             row = {}
             row['date']=i.uploaddate
-            row['filename']=str(i.filename).split('###')[0]+".mp4"
+            row['filename']=str(i.filename).split('###')[1]+".mp4"
             if i.hascalculated=='1':
                 row['status']='计算完成'
             else:
