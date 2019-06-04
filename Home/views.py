@@ -156,7 +156,5 @@ def stream_video(request, path):
     resp['Accept-Ranges'] = 'bytes'
     return resp
 def video_play(request):
-    filename=request.GET.get("filename")
-    print(filename)
     username=request.user
-    return stream_video(request,'/root/DetectedVideos/chenbaocun###测试视频03_clip.mp4')
+    return stream_video(request,'/root/UploadVideos/chenbaocun###13.mp4')
