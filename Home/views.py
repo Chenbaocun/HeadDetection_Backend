@@ -161,5 +161,5 @@ def video_play(request):
     # print(request.GET.get("filename"))
     user=request.user
     filename=request.GET.get("filename")
-    path='/root/UploadVideos/'+str(user)+"###"+str(filename)
+    path='/root/DetectedVideos/'+str(user)+"###"+str(filename)
     return stream_video(request,path)
