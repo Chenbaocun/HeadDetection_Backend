@@ -77,7 +77,7 @@ def video_detect(input_video,output_video,filename,username,):
             frame_width = int(vidcap.get(3))
             frame_height = int(vidcap.get(4))  # 1920*1080
             # Define the codec and create VideoWriter object.The output is stored in 'outpy.avi' file.  'M', 'J', 'P', 'G'
-            out_video = cv2.VideoWriter(output_video, cv2.VideoWriter_fourcc('M', 'P', '4', 'V'), 29,
+            out_video = cv2.VideoWriter(output_video, cv2.VideoWriter_fourcc('A', 'V', 'C', '1'), 29,
                                         (frame_width, frame_height))
 
             while (True):
