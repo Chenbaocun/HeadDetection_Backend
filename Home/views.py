@@ -156,6 +156,10 @@ def stream_video(request, path):
     resp['Accept-Ranges'] = 'bytes'
     return resp
 def video_play(request):
-    print(request.user)
-    print(request.GET.get("filename"))
+    # 会调用两次
+    # print(request.user)
+    # print(request.GET.get("filename"))
+    user=request.user
+    filename=request.GET.get("filename")
+    path='/root/UploadVideos/'+user+"###"+filename
     return stream_video(request,'/root/UploadVideos/chenbaocun###13.mp4')
