@@ -157,5 +157,6 @@ def stream_video(request, path):
     return resp
 def video_play(request):
     filename=request.GET.get("filename")
+    print(filename)
     username=request.user
-    return stream_video(request,r'/root/DetectedVideos/'+filename)
+    return stream_video(request,r'/root/DetectedVideos/chenbaocun###13.mp4')
