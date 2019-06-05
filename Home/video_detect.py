@@ -110,16 +110,18 @@ def video_detect(input_video,output_video,filename,username,):
                     out_video.write(image_np)
                     #测试是否是这导致的内存泄漏
                     plt.close()
+
                 # Break the loop
                 else:
                     break
 
+    out_video.release()
     end = time.time()
     Uploadvideos.objects.filter(username=username,filename=filename).update(hascalculated=1)
     print("视频计算结束，时间为: ", end - start)
     input_path='/root/DetectedVideos/'+filename
     output_path='/root/DetectedVideos_AVC/'+filename
-    ff = FFmpeg(inputs={str(input_path): None}, outputs={str(output_path): '-vcodec h264 -s 1280*720 -acodec copy -f mp4'})
+    ff = FFmpeg(inputs={input_path: None}, outputs={output_path: '-vcodec h264 -s 1280*720 -acodec copy -f mp4'})
     ff.run()
     print("格式转换成功")
     return 1
