@@ -4,6 +4,7 @@
 # @Email : chenbaocun@emails.bjut.edu.cn
 # @File : video_detect.py
 # @Software: PyCharm
+import threading
 import time
 import numpy as np
 import os
@@ -124,4 +125,10 @@ def video_detect(input_video,output_video,filename,username,):
     ff = FFmpeg(inputs={input_path: None}, outputs={output_path: '-vcodec h264 -s 1280*720 -acodec copy -f mp4'})
     ff.run()
     print("格式转换成功")
+    undetected_videos=Uploadvideos.objects.filter(hascalculated=0)
+    for video in undetected_videos:
+        new_thread = threading.Thread(target=video_detect, name="video_detect", args=(
+            "/root/UploadVideos/" + filename, "/root/DetectedVideos/" + filename, video.filename, video.username,))
+        new_thread.start()
+        break
     return 1
