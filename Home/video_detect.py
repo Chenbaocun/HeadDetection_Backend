@@ -12,6 +12,7 @@ import tensorflow as tf
 import cv2
 from matplotlib import pyplot as plt
 from .models import Uploadvideos
+from ffmpy import FFmpeg
 start = time.time()
 
 # This is needed since the notebook is stored in the object_detection folder.
@@ -77,7 +78,8 @@ def video_detect(input_video,output_video,filename,username,):
             frame_width = int(vidcap.get(3))
             frame_height = int(vidcap.get(4))  # 1920*1080
             # Define the codec and create VideoWriter object.The output is stored in 'outpy.avi' file.  'M', 'J', 'P', 'G'
-            out_video = cv2.VideoWriter(output_video, cv2.VideoWriter_fourcc('a', 'v', 'c', '1'), 29,
+            # 流媒体常用h264/avc编码，但是服务器上没有这种编码器，还是先输出成这种再进行转换。
+            out_video = cv2.VideoWriter(output_video, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'), 29,
                                         (frame_width, frame_height))
 
             while (True):
@@ -115,4 +117,9 @@ def video_detect(input_video,output_video,filename,username,):
     end = time.time()
     Uploadvideos.objects.filter(username=username,filename=filename).update(hascalculated=1)
     print("视频计算结束，时间为: ", end - start)
+    input_path='/root/DetectedVideos/'+filename
+    output_path='/root/DetectedVideos_AVC/'+filename
+    ff = FFmpeg(inputs={input_path: None}, outputs={output_path: '-vcodec h264 -s 1280*720 -acodec copy -f mp4'})
+    ff.run()
+    print("格式转换成功")
     return 1
