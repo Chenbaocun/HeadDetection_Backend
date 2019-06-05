@@ -128,7 +128,7 @@ def video_detect(input_video,output_video,filename,username,):
     undetected_videos=Uploadvideos.objects.filter(hascalculated=0)
     for video in undetected_videos:
         new_thread = threading.Thread(target=video_detect, name="video_detect", args=(
-            "/root/UploadVideos/" + filename, "/root/DetectedVideos/" + filename, video.filename, video.username,))
+            "/root/UploadVideos/" + video.filename, "/root/DetectedVideos/" + video.filename, video.filename, video.username,))
         new_thread.start()
         break
     return 1
