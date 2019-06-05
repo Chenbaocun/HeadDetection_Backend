@@ -13,7 +13,9 @@ from wsgiref.util import FileWrapper
 from django.http import StreamingHttpResponse
 import re
 import os
+from queue import Queue
 # Create your views here.
+q=Queue(1)
 def Index(request):
     if request.method == 'POST':
         session_key=request.session.session_key
@@ -84,9 +86,13 @@ def UploadVideo(request):
             for chunk in obj.chunks():
                 file.write(chunk)
             file.close()
-            new_thread = threading.Thread(target=video_detect, name="video_detect", args=(
-            "/root/UploadVideos/" + filename, "/root/DetectedVideos/" + filename, filename, request.user,))
-            new_thread.start()
+            print(threading.enumerate())
+            if (len(threading.enumerate())>3):
+                print("线程已经存在了")
+            else:
+                new_thread = threading.Thread(target=video_detect, name="video_detect", args=(
+                    "/root/UploadVideos/" + filename, "/root/DetectedVideos/" + filename, filename, request.user,))
+                new_thread.start()
             return HttpResponse("upload success")
 def beforeUploadVideo(request):
     if request.method=='POST':
