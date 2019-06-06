@@ -1,4 +1,12 @@
 # -*- coding: utf-8 -*-
+# @Time : 2019/6/6 16:16
+# @Author : Tom Chen
+# @Email : chenbaocun@emails.bjut.edu.cn
+# @File : video_detect2.py
+# @Software: PyCharm
+
+
+# -*- coding: utf-8 -*-
 # @Time : 2019-05-07 16:32
 # @Author : Tom Chen
 # @Email : chenbaocun@emails.bjut.edu.cn
@@ -15,8 +23,7 @@ import cv2
 from matplotlib import pyplot as plt
 from .models import Uploadvideos
 from ffmpy import FFmpeg
-from .video_detect2 import video_detect2
-
+from .video_detect import video_detect
 start = time.time()
 
 # This is needed since the notebook is stored in the object_detection folder.
@@ -30,7 +37,7 @@ from object_detection.utils import visualization_utils as vis_util
 # What model to download.
 MODEL_NAME = 'ssd_mobilenet_v1_coco_2017_11_17'  # [30,21]  best
 
-def video_detect(input_video,output_video,filename,username,):
+def video_detect2(input_video,output_video,filename,username,):
     # Path to frozen detection graph. This is the actual model that is used for the object detection.
     # PATH_TO_CKPT = os.path.join('frozen_inference_graph.pb')
     PATH_TO_CKPT = '/root/detect_models/frozen_inference_graph.pb'
@@ -132,7 +139,7 @@ def video_detect(input_video,output_video,filename,username,):
     print("格式转换成功")
     undetected_videos=Uploadvideos.objects.filter(hascalculated=0)
     for video in undetected_videos:
-        new_thread = threading.Thread(target=video_detect2, args=(
+        new_thread = threading.Thread(target=video_detect, args=(
             "/root/UploadVideos/" + video.filename, "/root/DetectedVideos/" + video.filename, video.filename, video.username,))
         new_thread.start()
         break
