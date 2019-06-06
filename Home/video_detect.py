@@ -15,8 +15,6 @@ import cv2
 from matplotlib import pyplot as plt
 from .models import Uploadvideos
 from ffmpy import FFmpeg
-from Home.video_detect2 import video_detect2
-
 start = time.time()
 
 # This is needed since the notebook is stored in the object_detection folder.
@@ -132,7 +130,7 @@ def video_detect(input_video,output_video,filename,username,):
     print("格式转换成功")
     undetected_videos=Uploadvideos.objects.filter(hascalculated=0)
     for video in undetected_videos:
-        new_thread = threading.Thread(target=video_detect2, args=(
+        new_thread = threading.Thread(target=video_detect, args=(
             "/root/UploadVideos/" + video.filename, "/root/DetectedVideos/" + video.filename, video.filename, video.username,))
         new_thread.start()
         break
