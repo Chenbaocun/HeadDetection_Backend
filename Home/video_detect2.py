@@ -23,7 +23,7 @@ import cv2
 from matplotlib import pyplot as plt
 from .models import Uploadvideos
 from ffmpy import FFmpeg
-from .video_detect import video_detect
+from Home.video_detect import video_detect
 start = time.time()
 
 # This is needed since the notebook is stored in the object_detection folder.

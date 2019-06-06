@@ -15,7 +15,7 @@ import cv2
 from matplotlib import pyplot as plt
 from .models import Uploadvideos
 from ffmpy import FFmpeg
-from .video_detect2 import video_detect2
+from Home.video_detect2 import video_detect2
 
 start = time.time()
 
