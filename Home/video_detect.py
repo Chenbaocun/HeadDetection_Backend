@@ -63,8 +63,8 @@ def video_detect(input_video,output_video,filename,username,):
 
     with detection_graph.as_default():
         with tf.Session(graph=detection_graph) as sess:
-            print("当前线程个数" + str(len(threading.enumerate())))
-            print("进入了新线程")
+            # print("当前线程个数" + str(len(threading.enumerate())))
+            # print("进入了新线程")
             # Definite input and output Tensors for detection_graph
             image_tensor = detection_graph.get_tensor_by_name('image_tensor:0')
             # Each box represents a part of the image where a particular object was detected.
