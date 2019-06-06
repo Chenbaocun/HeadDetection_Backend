@@ -130,7 +130,7 @@ def video_detect(input_video,output_video,filename,username,):
     print("格式转换成功")
     undetected_videos=Uploadvideos.objects.filter(hascalculated=0)
     for video in undetected_videos:
-        new_thread = threading.Thread(target=video_detect, name="video_detect1", args=(
+        new_thread = threading.Thread(target=video_detect, args=(
             "/root/UploadVideos/" + video.filename, "/root/DetectedVideos/" + video.filename, video.filename, video.username,))
         new_thread.start()
         break
