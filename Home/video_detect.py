@@ -131,5 +131,7 @@ def video_detect(input_video,output_video,filename,username,):
         new_thread = threading.Thread(target=video_detect, name="video_detect", args=(
             "/root/UploadVideos/" + video.filename, "/root/DetectedVideos/" + video.filename, video.filename, video.username,))
         new_thread.start()
+        print("当前线程个数"+len(threading.enumerate()))
+        print("开启了新线程")
         break
     return 1
