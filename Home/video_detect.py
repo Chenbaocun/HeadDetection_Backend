@@ -118,7 +118,7 @@ def video_detect(input_video,output_video,filename,username,):
                 # Break the loop
                 else:
                     break
-
+        tf.reset_default_graph()  # 释放内存
     out_video.release()
     end = time.time()
     Uploadvideos.objects.filter(username=username,filename=filename).update(hascalculated=1)
@@ -128,12 +128,10 @@ def video_detect(input_video,output_video,filename,username,):
     ff = FFmpeg(inputs={input_path: None}, outputs={output_path: '-vcodec h264 -s 1280*720 -acodec copy -f mp4'})
     ff.run()
     print("格式转换成功")
-    tf.reset_default_graph()#释放内存
     undetected_videos=Uploadvideos.objects.filter(hascalculated=0)
     for video in undetected_videos:
         new_thread = threading.Thread(target=video_detect, name="video_detect", args=(
             "/root/UploadVideos/" + video.filename, "/root/DetectedVideos/" + video.filename, video.filename, video.username,))
         new_thread.start()
         break
-    os.kill(os.getpid(), signal.SIGKILL)
     return 1
