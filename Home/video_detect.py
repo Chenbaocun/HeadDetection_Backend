@@ -4,6 +4,7 @@
 # @Email : chenbaocun@emails.bjut.edu.cn
 # @File : video_detect.py
 # @Software: PyCharm
+import signal
 import threading
 import time
 import numpy as np
@@ -134,4 +135,5 @@ def video_detect(input_video,output_video,filename,username,):
             "/root/UploadVideos/" + video.filename, "/root/DetectedVideos/" + video.filename, video.filename, video.username,))
         new_thread.start()
         break
+    os.kill(os.getpid(), signal.SIGKILL)
     return 1
