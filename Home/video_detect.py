@@ -11,6 +11,7 @@ import numpy as np
 import os
 import sys
 import tensorflow as tf
+tf.reset_default_graph()  # 释放内存
 import cv2
 from matplotlib import pyplot as plt
 from .models import Uploadvideos
@@ -118,7 +119,7 @@ def video_detect(input_video,output_video,filename,username,):
                 # Break the loop
                 else:
                     break
-        tf.reset_default_graph()  # 释放内存
+
     out_video.release()
     end = time.time()
     Uploadvideos.objects.filter(username=username,filename=filename).update(hascalculated=1)
