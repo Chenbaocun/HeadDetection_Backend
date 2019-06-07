@@ -175,10 +175,10 @@ def login_app(request):
     if request.method=='POST':
         username=request.POST.get('username')
         password=request.POST.get('password')
-        print(username)
-        print(password)
+        # print(username)
+        # print(password)
         user=authenticate(username=username, password=password)
-        print(user)
+        # print(user)
         if user :
             return HttpResponse(username)#验证成功
         else:
