@@ -169,3 +169,16 @@ def video_play(request):
     filename=request.GET.get("filename")
     path='/root/DetectedVideos_AVC/'+str(user)+"###"+str(filename)
     return stream_video(request,path)
+
+
+def login_app(request):
+    if request.method=='POST':
+        username=request.POST.get('username')
+        password=request.POST.get('password')
+        print(username)
+        print(password)
+        user=AuthUser.objects.filter(username=username, password=password)
+        if user :
+            return HttpResponse(username)#验证成功
+        else:
+            return HttpResponse(0)#账号或者密码错误
