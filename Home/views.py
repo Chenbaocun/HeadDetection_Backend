@@ -177,7 +177,7 @@ def login_app(request):
         password=request.POST.get('password')
         print(username)
         print(password)
-        user=AuthUser.objects.filter(username=username, password=password)
+        user=authenticate(username=username, password=password)
         print(user)
         if user :
             return HttpResponse(username)#验证成功
