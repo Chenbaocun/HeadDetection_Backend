@@ -178,6 +178,7 @@ def login_app(request):
         print(username)
         print(password)
         user=AuthUser.objects.filter(username=username, password=password)
+        print(user)
         if user :
             return HttpResponse(username)#验证成功
         else:
