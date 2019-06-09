@@ -36,5 +36,6 @@ urlpatterns = [
     path('abnormal_image/',views.abnormal_image),
     path('get_threshold/', views.get_threshold),
     path('set_threshold/', views.set_threshold),
+    path('get_threshold_app/', views.get_threshold_app),
 
 ]
