@@ -128,7 +128,16 @@ class DjangoSession(models.Model):
     class Meta:
         managed = False
         db_table = 'django_session'
+class RealtimeCount(models.Model):
+    username = models.CharField(max_length=255)
+    location = models.CharField(max_length=255, blank=True, null=True)
+    date = models.CharField(max_length=255, blank=True, null=True)
+    mobiletype = models.CharField(max_length=255, blank=True, null=True)
 
+    class Meta:
+        managed = False
+        db_table = 'realtime_count'
+        
 class Uploadvideos(models.Model):
     username = models.CharField(max_length=255)
     hascalculated = models.CharField(max_length=255)
