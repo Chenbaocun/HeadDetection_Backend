@@ -188,8 +188,10 @@ def count_app(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         count = request.POST.get('count')
+        mobiletype=request.POST.get('mobiletype')
         print(username)
         print(count)
+        print(mobiletype)
         return HttpResponse(1)
         # print(user)
         # if user:
