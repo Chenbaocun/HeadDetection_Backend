@@ -189,9 +189,11 @@ def count_app(request):
         username = request.POST.get('username')
         count = request.POST.get('count')
         mobiletype=request.POST.get('mobiletype')
+        date=datetime.datetime.now()
         print(username)
         print(count)
         print(mobiletype)
+        RealtimeCount.objects.create(username=username,count=count,mobiletype=mobiletype,date=date)
         return HttpResponse(1)
         # print(user)
         # if user:

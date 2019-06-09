@@ -137,7 +137,7 @@ class RealtimeCount(models.Model):
     class Meta:
         managed = False
         db_table = 'realtime_count'
-        
+
 class Uploadvideos(models.Model):
     username = models.CharField(max_length=255)
     hascalculated = models.CharField(max_length=255)
