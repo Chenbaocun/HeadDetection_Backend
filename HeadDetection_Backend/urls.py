@@ -34,6 +34,7 @@ urlpatterns = [
     path('video_play/',views.video_play),
     path('count_app/',views.count_app),
     path('abnormal_image/',views.abnormal_image),
-    path('get_threshold/', views.get_threshold)
+    path('get_threshold/', views.get_threshold),
+    path('set_threshold/', views.set_threshold),
 
 ]
