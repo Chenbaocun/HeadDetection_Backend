@@ -253,3 +253,9 @@ def set_threshold_app(request):
             NumThreshold.objects.create(username=username, threshold=threshold)
             return HttpResponse(1)
         return HttpResponse()  # 前两个if都不通
+def up_advice(request):
+    if request.method == 'POST':
+        username=request.user
+        advice=request.POST.get('up_advice')
+        Useradvice.objects.create(username=username,advice=advice)
+        return HttpResponse(1)

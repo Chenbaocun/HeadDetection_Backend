@@ -173,3 +173,11 @@ class Uploadvideos(models.Model):
     class Meta:
         managed = False
         db_table = 'uploadvideos'
+
+class Useradvice(models.Model):
+    username = models.CharField(max_length=255, blank=True, null=True)
+    advice = models.CharField(max_length=500, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'userAdvice'

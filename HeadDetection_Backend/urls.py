@@ -38,4 +38,7 @@ urlpatterns = [
     path('set_threshold/', views.set_threshold),
     path('get_threshold_app/', views.get_threshold_app),
     path('set_threshold_app/', views.set_threshold_app),
+    path('up_advice/', views.up_advice),
+
+
 ]
