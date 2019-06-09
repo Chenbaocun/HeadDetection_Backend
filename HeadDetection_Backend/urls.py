@@ -37,5 +37,5 @@ urlpatterns = [
     path('get_threshold/', views.get_threshold),
     path('set_threshold/', views.set_threshold),
     path('get_threshold_app/', views.get_threshold_app),
-
+    path('set_threshold_app/', views.set_threshold_app),
 ]

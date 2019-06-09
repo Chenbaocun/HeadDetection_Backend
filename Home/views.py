@@ -240,3 +240,16 @@ def get_threshold_app(request):
                 return HttpResponse(i.threshold)
         else:
             return HttpResponse(0)
+
+def set_threshold_app(request):
+    if request.method=='POST':
+        username=request.POST.get("username")
+        threshold = request.POST.get('threshold')
+        ret = NumThreshold.objects.filter(username=username)
+        if (ret):
+            NumThreshold.objects.filter(username=username).update(threshold=threshold)
+            return HttpResponse(1)
+        else:
+            NumThreshold.objects.create(username=username, threshold=threshold)
+            return HttpResponse(1)
+        return HttpResponse()  # 前两个if都不通
