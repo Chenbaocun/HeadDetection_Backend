@@ -200,5 +200,5 @@ def abnormal_image(request):
         username=request.POST.get('username')
         abnormal_image=request.POST.get('abnormal_image')
         print(username)
-        print(abnormal_image)
+        print(type(abnormal_image))
         return HttpResponse(1)
