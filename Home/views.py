@@ -195,8 +195,6 @@ def count_app(request):
         print(mobiletype)
         RealtimeCount.objects.create(username=username,count=count,mobiletype=mobiletype,date=date)
         return HttpResponse(1)
-        # print(user)
-        # if user:
-        #     return HttpResponse(username)  # 验证成功
-        # else:
-        #     return HttpResponse(0)  # 账号或者密码错误
+def abnormal_image(request):
+    if request.method=='POST':
+        abnormal_image=request.POST.get('abnormal_image')
