@@ -133,6 +133,7 @@ class RealtimeCount(models.Model):
     location = models.CharField(max_length=255, blank=True, null=True)
     date = models.CharField(max_length=255, blank=True, null=True)
     mobiletype = models.CharField(max_length=255, blank=True, null=True)
+    count = models.IntegerField()
 
     class Meta:
         managed = False
