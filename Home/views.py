@@ -198,6 +198,6 @@ def count_app(request):
 def abnormal_image(request):
     if request.method=='POST':
         # username=request.POST.get('username')
-        abnormal_image=request.POST.get('img')
+        abnormal_image=request.FILES.get('img')
         print(abnormal_image)
         return HttpResponse(1)
