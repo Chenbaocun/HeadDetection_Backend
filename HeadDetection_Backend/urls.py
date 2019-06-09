@@ -31,5 +31,6 @@ urlpatterns = [
     path('beforeUploadVideo/', views.beforeUploadVideo),
     path('UploadVideo/', views.UploadVideo),
     path('myupload/', views.myupload),
-    path('video_play/',views.video_play)
+    path('video_play/',views.video_play),
+    path('count_app/',views.count_app)
 ]

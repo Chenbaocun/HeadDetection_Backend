@@ -183,3 +183,16 @@ def login_app(request):
             return HttpResponse(username)#验证成功
         else:
             return HttpResponse(0)#账号或者密码错误
+
+def count_app(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        count = request.POST.get('count')
+        print(username)
+        print(count)
+        return HttpResponse(1)
+        # print(user)
+        # if user:
+        #     return HttpResponse(username)  # 验证成功
+        # else:
+        #     return HttpResponse(0)  # 账号或者密码错误
