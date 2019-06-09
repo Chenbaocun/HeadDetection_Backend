@@ -199,5 +199,11 @@ def abnormal_image(request):
     if request.method=='POST':
         # username=request.POST.get('username')
         abnormal_image=request.FILES.get('img')
+        username=str(abnormal_image).split("###")[0]
         print(abnormal_image)
+        file = open("/root/AbnormalImage/" + abnormal_image, "wb+")
+        AbnormalImage.objects.create(username=username,filename=str(abnormal_image),hascalculated=0)
+        for chunk in abnormal_image.chunks():
+            file.write(chunk)
+        file.close()
         return HttpResponse(1)
