@@ -137,6 +137,22 @@ class DjangoSession(models.Model):
     class Meta:
         managed = False
         db_table = 'django_session'
+
+class NumThreshold(models.Model):
+    threshold = models.CharField(max_length=255, blank=True, null=True)
+    username = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'num_threshold'
+
+
+class OnlineDevices(models.Model):
+    online_num = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'online_devices'
 class RealtimeCount(models.Model):
     username = models.CharField(max_length=255)
     location = models.CharField(max_length=255, blank=True, null=True)

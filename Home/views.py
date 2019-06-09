@@ -207,3 +207,13 @@ def abnormal_image(request):
             file.write(chunk)
         file.close()
         return HttpResponse(1)
+
+def get_threshold(request):
+    if request.method=="POST":
+        username=request.user
+        ret=NumThreshold.objects.filter(username=username)
+        if (ret):
+            for i in ret:
+                return HttpResponse(i.threshold)
+        else:
+            return HttpResponse()
