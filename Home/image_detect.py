@@ -2,9 +2,10 @@
 import numpy as np
 import os
 import tensorflow as tf
-import matplotlib as mlp
-mlp.use('Agg')
-from matplotlib import pyplot as plt
+# import matplotlib as mlp
+# mlp.use('Agg')
+# from matplotlib import pyplot as plt
+import cv2
 from PIL import Image
 from object_detection.utils import ops as utils_ops
 from object_detection.utils import label_map_util
