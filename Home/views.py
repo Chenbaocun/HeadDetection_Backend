@@ -234,6 +234,13 @@ def set_threshold(request):
 def get_threshold_app(request):
     if request.method=='POST':
         username=request.POST.get("username")
+        startCount=request.POST.get('startCount')
+        if(startCount=='1'):
+            a=OnlineUser.objects.filter(username=username)
+            if(a):
+                OnlineUser.objects.filter(username=username).update(online=1)
+            else:
+                OnlineUser.objects.create(username=username,online=1)
         ret = NumThreshold.objects.filter(username=username)
         if ret:
             for i in ret:
@@ -263,6 +270,11 @@ def up_advice(request):
 def real_time_count(request):
     if request.method == 'POST':
         username = request.user
-        a=RealtimeCount.objects.filter(username=username)
-        real_time_count=a[len(a)-1].count
-        return HttpResponse(real_time_count)
+        b=OnlineUser.objects.filter(username=username,online=1)
+        if b:
+            a = RealtimeCount.objects.filter(username=username)
+            real_time_count = a[len(a) - 1].count
+            return HttpResponse(real_time_count)
+        else:
+            return HttpResponse()
+
