@@ -14,6 +14,7 @@ import tensorflow as tf
 import cv2
 from matplotlib import pyplot as plt
 from .models import Uploadvideos
+from .models import NumThreshold
 from ffmpy import FFmpeg
 start = time.time()
 
@@ -60,7 +61,8 @@ def video_detect(input_video,output_video,filename,username,):
 
     # Size, in inches, of the output images.
     IMAGE_SIZE = (12, 8)
-    threshold = 5
+    a=NumThreshold.objects.filter(username=username)
+    threshold = a[0].threshold
     with detection_graph.as_default():
         with tf.Session(graph=detection_graph) as sess:
             # print("当前线程个数" + str(len(threading.enumerate())))
@@ -116,10 +118,10 @@ def video_detect(input_video,output_video,filename,username,):
                     # plt.imshow(image_np)
                     # Write the frame into the file 'output.avi'
                     if (count > threshold):
-                        image_np = cv2.putText(image_np, "TotalNum:" + str(count), (frame_width - 300, 70),
+                        image_np = cv2.putText(image_np, "Total:" + str(count), (frame_width - 250, 70),
                                                cv2.FONT_HERSHEY_SIMPLEX, 1.2, (0, 0, 255), 2)
                     else:
-                        image_np = cv2.putText(image_np, "TotalNum:" + str(count), (frame_width - 300, 70),
+                        image_np = cv2.putText(image_np, "Total:" + str(count), (frame_width - 250, 70),
                                                cv2.FONT_HERSHEY_SIMPLEX, 1.2, (0, 255, 0), 2)
                     out_video.write(image_np)
                     #测试是否是这导致的内存泄漏
