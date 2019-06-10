@@ -62,7 +62,7 @@ def video_detect(input_video,output_video,filename,username,):
     # Size, in inches, of the output images.
     IMAGE_SIZE = (12, 8)
     a=NumThreshold.objects.filter(username=username)
-    threshold = a[0].threshold
+    threshold = int(a[0].threshold)
     with detection_graph.as_default():
         with tf.Session(graph=detection_graph) as sess:
             # print("当前线程个数" + str(len(threading.enumerate())))
