@@ -39,6 +39,6 @@ urlpatterns = [
     path('get_threshold_app/', views.get_threshold_app),
     path('set_threshold_app/', views.set_threshold_app),
     path('up_advice/', views.up_advice),
-
+    path('real_time_count/', views.real_time_count),
 
 ]

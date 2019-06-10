@@ -259,3 +259,10 @@ def up_advice(request):
         advice=request.POST.get('up_advice')
         Useradvice.objects.create(username=username,advice=advice)
         return HttpResponse(1)
+
+def real_time_count(request):
+    if request.method == 'POST':
+        username = request.user
+        a=RealtimeCount.objects.filter(username=username)
+        real_time_count=a[len(a)-1].count
+        return HttpResponse(real_time_count)
