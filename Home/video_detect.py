@@ -99,6 +99,10 @@ def video_detect(input_video,output_video,filename,username,):
                     (boxes, scores, classes, num) = sess.run(
                         [detection_boxes, detection_scores, detection_classes, num_detections],
                         feed_dict={image_tensor: image_np_expanded})
+                    count = 0
+                    for i in np.squeeze(scores):
+                        if i > 0.55:
+                            count += 1
                     # Visualization of the results of a detection.
                     vis_util.visualize_boxes_and_labels_on_image_array(
                         image_np,
@@ -108,12 +112,18 @@ def video_detect(input_video,output_video,filename,username,):
                         category_index,
                         use_normalized_coordinates=True,
                         line_thickness=8)
-                    plt.figure(figsize=IMAGE_SIZE)
-                    plt.imshow(image_np)
+                    # plt.figure(figsize=IMAGE_SIZE)
+                    # plt.imshow(image_np)
                     # Write the frame into the file 'output.avi'
+                    if (count > threshold):
+                        image_np = cv2.putText(image_np, "TotalNum:" + str(count), (frame_width - 300, 70),
+                                               cv2.FONT_HERSHEY_SIMPLEX, 1.2, (0, 0, 255), 2)
+                    else:
+                        image_np = cv2.putText(image_np, "TotalNum:" + str(count), (frame_width - 300, 70),
+                                               cv2.FONT_HERSHEY_SIMPLEX, 1.2, (0, 255, 0), 2)
                     out_video.write(image_np)
                     #测试是否是这导致的内存泄漏
-                    plt.close()
+                    # plt.close()
 
                 # Break the loop
                 else:
