@@ -76,6 +76,7 @@ def run_inference_for_single_image(image, graph):
 threshold=5
 # for image_path in TEST_IMAGE_PATHS:
 image = Image.open(TEST_IMAGE_PATHS)
+image=image.convert("RGB")
 (im_width, im_height) = image.size
 image_np = load_image_into_numpy_array(image)
 image_np_expanded = np.expand_dims(image_np, axis=0)
