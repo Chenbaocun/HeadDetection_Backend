@@ -271,12 +271,18 @@ def real_time_count(request):
     if request.method == 'POST':
         username = request.user
         b=OnlineUser.objects.filter(username=username,online=1)
+        c=NumThreshold.objects.filter(username=username)
+        threshold=c[0].threshold
         # print(b)
         if b:
             a = RealtimeCount.objects.filter(username=username)
             real_time_count = a[len(a) - 1].count
             # print(real_time_count)
-            return HttpResponse(real_time_count)
+            red=0
+            if real_time_count>threshold:
+                red=1
+            content={"real_time_count":real_time_count,"red":red}
+            return HttpResponse(simplejson.dumps(content))
         else:
             return HttpResponse(-1)
 
