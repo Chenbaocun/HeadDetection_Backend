@@ -279,7 +279,7 @@ def real_time_count(request):
             real_time_count = a[len(a) - 1].count
             # print(real_time_count)
             red=0
-            if real_time_count>threshold:
+            if int(real_time_count)>int(threshold):
                 red=1
             content={"real_time_count":real_time_count,"red":red}
             return HttpResponse(simplejson.dumps(content))
