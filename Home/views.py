@@ -291,3 +291,12 @@ def exit_count_app(request):
         username=request.POST.get('username')
         OnlineUser.objects.filter(username=username).update(online=0)
         return HttpResponse(0)
+
+
+def get_TotalOnlineUser(request):
+    if request.method == 'POST':
+        username=request.POST.get('username')
+        a=OnlineUser.objects.filter(username=username,online=1)
+        return HttpResponse(len(a))
+    else:
+        return HttpResponse(-1)
