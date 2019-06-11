@@ -31,7 +31,7 @@ def load_image_into_numpy_array(image):
       (im_height, im_width, 3)).astype(np.uint8)
 
 TEST_IMAGE_PATHS = '/root/AbnormalImage/chenbaocun###2019年06月09日_14时20分39秒.png'
-IMAGE_SIZE = (12, 8)
+IMAGE_SIZE = (12, 12)
 
 
 def run_inference_for_single_image(image, graph):
