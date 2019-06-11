@@ -278,3 +278,8 @@ def real_time_count(request):
         else:
             return HttpResponse()
 
+def exit_count_app(request):
+    if request.method=='POST':
+        username=request.POST.get('username')
+        OnlineUser.objects.filter(username=username).update(online=0)
+        return HttpResponse(0)
