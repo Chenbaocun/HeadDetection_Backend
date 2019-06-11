@@ -320,12 +320,11 @@ def getAbnormalImageList(request):
         return HttpResponse(simplejson.dumps(context))
 
 def image_play(request):
-    if request.method == 'POST':
-        username=request.user
-        filename=request.GET.get("filename")
-        filename=urllib.parse.unquote(filename)
-        print(filename)
-        path = '/root/AbnormalImage/' + str(username) + "###" + str(filename)
-        with open(path,'rb') as f:
-            image_data=f.read()
-        return HttpResponse(image_data,content_type='image/png')
+    username = request.user
+    filename = request.GET.get("filename")
+    filename = urllib.parse.unquote(filename)
+    print(filename)
+    path = '/root/AbnormalImage/' + str(username) + "###" + str(filename)
+    with open(path, 'rb') as f:
+        image_data = f.read()
+    return HttpResponse(image_data, content_type='image/png')
