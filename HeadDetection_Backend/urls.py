@@ -41,7 +41,8 @@ urlpatterns = [
     path('up_advice/', views.up_advice),
     path('real_time_count/', views.real_time_count),
     path('exit_count_app/',views.exit_count_app),
-    path('get_TotalOnlineUser/', views.get_TotalOnlineUser)
+    path('get_TotalOnlineUser/', views.get_TotalOnlineUser),
+    path('getAbnormalImageList/', views.getAbnormalImageList)
 
 
 ]

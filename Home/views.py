@@ -163,7 +163,7 @@ def stream_video(request, path):
     return resp
 def video_play(request):
     # 会调用两次
-    print(request.user)
+    # print(request.user)
     # print(request.GET.get("filename"))
     user=request.user
     filename=request.GET.get("filename")
@@ -300,3 +300,21 @@ def get_TotalOnlineUser(request):
         return HttpResponse(len(a))
     else:
         return HttpResponse(-1)
+
+def getAbnormalImageList(request):
+    if request.method=='POST':
+        user=request.user
+        queryResult = AbnormalImage.objects.filter(username=user)
+        context=[]
+        for i in queryResult:
+            row = {}
+            row['date']=i.filename.split('###')[1].split(".")[0]
+            row['filename']=str(i.filename).split('###')[1]
+            if i.hascalculated=='1':
+                row['status']='计算完成'
+            else:
+                row['status']='排队计算中..'
+            context.append(row)
+        context={"data":context}
+        # print(context)
+        return HttpResponse(simplejson.dumps(context))
