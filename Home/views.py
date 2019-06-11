@@ -274,6 +274,7 @@ def real_time_count(request):
         if b:
             a = RealtimeCount.objects.filter(username=username)
             real_time_count = a[len(a) - 1].count
+            print(real_time_count)
             return HttpResponse(real_time_count)
         else:
             return HttpResponse()
