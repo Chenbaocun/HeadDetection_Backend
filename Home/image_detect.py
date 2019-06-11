@@ -31,7 +31,7 @@ def load_image_into_numpy_array(image):
       (im_height, im_width, 3)).astype(np.uint8)
 
 TEST_IMAGE_PATHS = '/root/AbnormalImage/chenbaocun###2019年06月09日_14时20分39秒.png'
-IMAGE_SIZE = (12, 12)
+IMAGE_SIZE = (4.8, 4.8)
 
 
 def run_inference_for_single_image(image, graph):
@@ -94,9 +94,9 @@ vis_util.visualize_boxes_and_labels_on_image_array(
       instance_masks=output_dict.get('detection_masks'),
       use_normalized_coordinates=True,
       line_thickness=8)
-# plt.figure(figsize=IMAGE_SIZE)
+plt.figure(figsize=IMAGE_SIZE)
 plt.imshow(image_np)
-plt.text(250, 30, 'Total:'+str(count),fontdict={'family': 'DejaVuSans','color':  'red','weight': 'bold','size': 16,})
+plt.text(240, 30, 'Total:'+str(count),fontdict={'family': 'DejaVuSans','color':  'red','weight': 'bold','size': 16,})
 plt.axis('off')
 plt.gca().xaxis.set_major_locator(plt.NullLocator())
 plt.gca().yaxis.set_major_locator(plt.NullLocator())
