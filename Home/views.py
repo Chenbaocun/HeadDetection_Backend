@@ -13,9 +13,9 @@ from wsgiref.util import FileWrapper
 from django.http import StreamingHttpResponse
 import re
 import os
-from queue import Queue
+import urllib.parse
 # Create your views here.
-q=Queue(1)
+
 def Index(request):
     if request.method == 'POST':
         session_key=request.session.session_key
@@ -323,6 +323,7 @@ def image_play(request):
     if request.method == 'POST':
         username=request.user
         filename=request.GET.get("filename")
+        filename=urllib.parse.unquote(filename)
         path = '/root/AbnormalImage/' + str(username) + "###" + str(filename)
         with open(path,'rb') as f:
             image_data=f.read()
