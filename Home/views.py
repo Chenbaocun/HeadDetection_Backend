@@ -271,6 +271,7 @@ def real_time_count(request):
     if request.method == 'POST':
         username = request.user
         b=OnlineUser.objects.filter(username=username,online=1)
+        print(b)
         if b:
             a = RealtimeCount.objects.filter(username=username)
             real_time_count = a[len(a) - 1].count
