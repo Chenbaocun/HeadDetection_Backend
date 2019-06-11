@@ -96,7 +96,7 @@ vis_util.visualize_boxes_and_labels_on_image_array(
       line_thickness=8)
 plt.figure(figsize=IMAGE_SIZE)
 plt.imshow(image_np)
-plt.text(1220, 30, 'Total:'+str(count),fontdict={'family': 'DejaVuSans','color':  'red','weight': 'bold','size': 16,})
+plt.text(1100, 30, 'Total:'+str(count),fontdict={'family': 'DejaVuSans','color':  'red','weight': 'bold','size': 16,})
 plt.axis('off')
 plt.gca().xaxis.set_major_locator(plt.NullLocator())
 plt.gca().yaxis.set_major_locator(plt.NullLocator())
