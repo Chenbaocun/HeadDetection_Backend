@@ -323,7 +323,7 @@ def image_play(request):
     username = request.user
     filename = request.GET.get("filename")
     filename = urllib.parse.unquote(filename)
-    print(filename)
+    # print(filename)
     path = '/root/AbnormalImage/' + str(username) + "###" + str(filename)
     with open(path, 'rb') as f:
         image_data = f.read()

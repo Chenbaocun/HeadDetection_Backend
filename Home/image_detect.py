@@ -30,7 +30,7 @@ def load_image_into_numpy_array(image):
   return np.array(image.getdata()).reshape(
       (im_height, im_width, 3)).astype(np.uint8)
 
-TEST_IMAGE_PATHS = '/root/AbnormalImage/image2.jpg'
+TEST_IMAGE_PATHS = '/root/AbnormalImage/chenbaocun###2019年06月09日_14时20分39秒.png'
 IMAGE_SIZE = (12, 8)
 
 
@@ -101,7 +101,7 @@ plt.gca().xaxis.set_major_locator(plt.NullLocator())
 plt.gca().yaxis.set_major_locator(plt.NullLocator())
 plt.subplots_adjust(top=1,bottom=0,left=0,right=1,hspace =0, wspace =0)
 plt.margins(0,0)
-plt.savefig('1.jpg')
+plt.savefig('chenbaocun###2019年06月09日_14时20分39秒.jpg')
 
 # if (count > threshold):
 #     image_np = cv2.putText(image_np, "TotalNum:" + str(count), (int(im_width *0.8), int(im_height*0.05)),
