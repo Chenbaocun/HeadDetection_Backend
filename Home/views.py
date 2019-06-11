@@ -163,7 +163,7 @@ def stream_video(request, path):
     return resp
 def video_play(request):
     # 会调用两次
-    # print(request.user)
+    print(request.user)
     # print(request.GET.get("filename"))
     user=request.user
     filename=request.GET.get("filename")
