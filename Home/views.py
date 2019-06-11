@@ -200,7 +200,7 @@ def abnormal_image(request):
         # username=request.POST.get('username')
         abnormal_image=request.FILES.get('img')
         username=str(abnormal_image).split("###")[0]
-        print(abnormal_image)
+        # print(abnormal_image)
         file = open("/root/AbnormalImage/" + str(abnormal_image), "wb+")
         AbnormalImage.objects.create(username=username,filename=str(abnormal_image),hascalculated=0)
         for chunk in abnormal_image.chunks():
