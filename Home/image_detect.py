@@ -84,7 +84,7 @@ def image_detect(input_path,output_path,filename,username):
     # for image_path in TEST_IMAGE_PATHS:
     image = Image.open(input_path)
     image = image.convert("RGB")
-    image=image.rotate(-90)
+    image=image.rotate(-90,expand=True)
     (im_width, im_height) = image.size
     image_np = load_image_into_numpy_array(image)
     image_np_expanded = np.expand_dims(image_np, axis=0)

@@ -24,5 +24,10 @@ from time import sleep
 # data='2019%E5%B9%B406%E6%9C%8809%E6%97%A5_14%E6%97%B620%E5%88%8639%E7%A7%92.png'
 # print(urllib.parse.unquote(data))
 
-image='chenbaocun###2019年06月11日_23时29分27秒.png'
-print(image.split(".")[0]+".jpg")
+# image='chenbaocun###2019年06月11日_23时29分27秒.png'
+# print(image.split(".")[0]+".jpg")
+from PIL import Image
+image = Image.open('C:/Users\Administrator\Desktop/2019年06月11日_19时42分17秒.png')
+image = image.convert("RGB")
+image=image.rotate(-90,expand=True)
+image.show()
