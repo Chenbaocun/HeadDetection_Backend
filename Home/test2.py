@@ -26,8 +26,12 @@ from time import sleep
 
 # image='chenbaocun###2019年06月11日_23时29分27秒.png'
 # print(image.split(".")[0]+".jpg")
-from PIL import Image
-image = Image.open('C:/Users\Administrator\Desktop/2019年06月11日_19时42分17秒.png')
-image = image.convert("RGB")
-image=image.rotate(-90,expand=True)
-image.show()
+# from PIL import Image
+# image = Image.open('C:/Users\Administrator\Desktop/2019年06月11日_19时42分17秒.png')
+# image = image.convert("RGB")
+# image=image.rotate(-90,expand=True)
+# image.show()
+
+# from .models import AbnormalImage
+# a=AbnormalImage.objects.filter(result=None)
+# print(a)
