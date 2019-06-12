@@ -3,7 +3,7 @@ import threading
 
 import numpy as np
 import os
-from .models import NumThreshold, AbnormalImage
+from .models import NumThreshold, AbnormalImage, Uploadvideos
 import tensorflow as tf
 import matplotlib as mlp
 mlp.use('Agg')
@@ -124,6 +124,15 @@ def image_detect(input_path,output_path,filename,username):
             new_thread = threading.Thread(target=image_detect, args=(
                 "/root/AbnormalImage/" + str(image.filename), "/root/DetectedImage/" + str(image.filename.split(".")[0]+".jpg"),
                 image.filename,image.username,))
+            new_thread.start()
+            break
+    else:
+        undetected_videos = Uploadvideos.objects.filter(hascalculated=0)
+        for video in undetected_videos:
+            from Home.video_detect import video_detect
+            new_thread = threading.Thread(target=video_detect, args=(
+                "/root/UploadVideos/" + video.filename, "/root/DetectedVideos/" + video.filename, video.filename,
+                video.username,))
             new_thread.start()
             break
 
