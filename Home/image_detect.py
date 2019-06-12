@@ -116,7 +116,7 @@ def image_detect(input_path,output_path,filename,username):
     plt.subplots_adjust(top=1, bottom=0, left=0, right=1, hspace=0, wspace=0)
     plt.margins(0, 0)
     filename=filename.split('.')[0]
-    plt.savefig(output_path+filename+".jpg")
+    plt.savefig(output_path)
     print("图片计算结束")
     AbnormalImage.objects.filter(username=username,filename=filename).update(hascalculated=1)
     undetected_image=AbnormalImage.objects.filter(hascalculated=0)
