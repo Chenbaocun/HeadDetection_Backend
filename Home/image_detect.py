@@ -105,10 +105,10 @@ def image_detect(input_path,output_path,filename,username):
     plt.figure(figsize=IMAGE_SIZE)
     plt.imshow(image_np)
     if(count>int(threshold)):
-        plt.text(240, 30, 'Total:' + str(count),
+        plt.text(480, 30, 'Total:' + str(count),
                  fontdict={'family': 'DejaVuSans', 'color': 'red', 'weight': 'bold', 'size': 16, })
     else:
-        plt.text(240, 30, 'Total:' + str(count),
+        plt.text(480, 30, 'Total:' + str(count),
                  fontdict={'family': 'DejaVuSans', 'color': 'green', 'weight': 'bold', 'size': 16, })
     plt.axis('off')
     plt.gca().xaxis.set_major_locator(plt.NullLocator())
