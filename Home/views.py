@@ -348,10 +348,6 @@ def getHistory(request):
             row = {}
             row['date']=i.date
             row['count']=i.count
-            if i.hascalculated=='1':
-                row['status']='计算完成'
-            else:
-                row['status']='排队计算中..'
             context.append(row)
         context={"data":context}
         # print(context)
