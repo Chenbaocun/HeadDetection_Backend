@@ -212,7 +212,7 @@ def abnormal_image(request):
             print("线程已经存在了")
         else:
             new_thread = threading.Thread(target=image_detect, name="image_detect", args=(
-                "/root/AbnormalImage/" + str(abnormal_image), "/root/DetectedImage/" + str(abnormal_image).split(".")[0]+".jpg", str(abnormal_image), request.user,))
+                "/root/AbnormalImage/" + str(abnormal_image), "/root/DetectedImage/" + str(abnormal_image).split(".")[0]+".jpg", str(abnormal_image), username,))
             new_thread.start()
         return HttpResponse(1)
 
