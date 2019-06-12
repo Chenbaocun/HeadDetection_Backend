@@ -367,7 +367,10 @@ def setTarget_app(request):
 def getTarget(request):
     if request.method == 'POST':
         username = request.user
-        a=OnlineUser.objects.filter(username=username)
-        b=Targetname.objects.filter(num=a[0].target)
-        return HttpResponse(b[0].target)
+        a=OnlineUser.objects.filter(username=username,online=1)
+        if a:
+            b = Targetname.objects.filter(num=a[0].target)
+            return HttpResponse(b[0].target)
+        else:
+            return HttpResponse()
 
