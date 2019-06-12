@@ -175,6 +175,16 @@ class RealtimeCount(models.Model):
         managed = False
         db_table = 'realtime_count'
 
+
+class Targetname(models.Model):
+    target = models.CharField(max_length=255, blank=True, null=True)
+    num = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'targetName'
+
+
 class Uploadvideos(models.Model):
     username = models.CharField(max_length=255)
     hascalculated = models.CharField(max_length=255)

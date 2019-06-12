@@ -47,6 +47,6 @@ urlpatterns = [
     path('getHistory/', views.getHistory),
     path('setTarget_app/', views.setTarget_app),
 
-    
+
 
 ]
