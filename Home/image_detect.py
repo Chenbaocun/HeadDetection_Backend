@@ -104,7 +104,7 @@ def image_detect(input_path,output_path,filename,username):
         line_thickness=8)
     plt.figure(figsize=IMAGE_SIZE)
     plt.imshow(image_np)
-    if(count>threshold):
+    if(count>int(threshold)):
         plt.text(240, 30, 'Total:' + str(count),
                  fontdict={'family': 'DejaVuSans', 'color': 'red', 'weight': 'bold', 'size': 16, })
     else:
