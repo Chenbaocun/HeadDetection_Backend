@@ -34,7 +34,7 @@ def load_image_into_numpy_array(image):
       (im_height, im_width, 3)).astype(np.uint8)
 
 # TEST_IMAGE_PATHS = '/root/AbnormalImage/chenbaocun###2019年06月09日_14时20分39秒.png'
-IMAGE_SIZE = (4.8, 4.8)
+# IMAGE_SIZE = (4.8, 4.8)
 
 
 def run_inference_for_single_image(image, graph):
@@ -102,7 +102,7 @@ def image_detect(input_path,output_path,filename,username):
         instance_masks=output_dict.get('detection_masks'),
         use_normalized_coordinates=True,
         line_thickness=8)
-    plt.figure(figsize=IMAGE_SIZE)
+    # plt.figure(figsize=IMAGE_SIZE)
     plt.imshow(image_np)
     if(count>int(threshold)):
         plt.text(480, 30, 'Total:' + str(count),
