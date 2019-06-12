@@ -43,7 +43,10 @@ urlpatterns = [
     path('exit_count_app/',views.exit_count_app),
     path('get_TotalOnlineUser/', views.get_TotalOnlineUser),
     path('getAbnormalImageList/', views.getAbnormalImageList),
-    path('image_play/', views.image_play)
+    path('image_play/', views.image_play),
+    path('getHistory/', views.getHistory),
+
+
 
 
 ]

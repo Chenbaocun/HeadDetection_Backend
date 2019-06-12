@@ -337,3 +337,22 @@ def image_play(request):
     with open(path, 'rb') as f:
         image_data = f.read()
     return HttpResponse(image_data, content_type='image/jpg')
+
+
+def getHistory(request):
+    if request.method=='POST':
+        username = request.user
+        queryResult = RealtimeCount.objects.filter(username=username)
+        context=[]
+        for i in queryResult:
+            row = {}
+            row['date']=i.date
+            row['count']=i.count
+            if i.hascalculated=='1':
+                row['status']='计算完成'
+            else:
+                row['status']='排队计算中..'
+            context.append(row)
+        context={"data":context}
+        # print(context)
+        return HttpResponse(simplejson.dumps(context))
