@@ -11,6 +11,7 @@ class AbnormalImage(models.Model):
     username = models.CharField(max_length=255, blank=True, null=True)
     filename = models.CharField(max_length=255, blank=True, null=True)
     hascalculated = models.CharField(max_length=255, blank=True, null=True)
+    result = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         managed = False
