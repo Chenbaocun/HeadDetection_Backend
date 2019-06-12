@@ -122,7 +122,7 @@ def image_detect(input_path,output_path,filename,username):
         for image in undetected_image:
             new_thread = threading.Thread(target=image_detect, args=(
                 "/root/AbnormalImage/" + str(image.filename), "/root/DetectedImage/" + str(image.filename.split(".")[0]+".png"),
-                image.username,))
+                image.filename,image.username,))
             new_thread.start()
             break
 

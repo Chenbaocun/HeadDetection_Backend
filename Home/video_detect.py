@@ -13,6 +13,7 @@ import sys
 import tensorflow as tf
 import cv2
 from matplotlib import pyplot as plt
+from .image_detect import image_detect
 from .models import Uploadvideos
 from .models import NumThreshold
 from .models import AbnormalImage
@@ -152,9 +153,9 @@ def video_detect(input_video,output_video,filename,username,):
             break
     elif(undetected_image):
         for image in undetected_image:
-            new_thread = threading.Thread(target=video_detect, args=(
+            new_thread = threading.Thread(target=image_detect, args=(
                 "/root/AbnormalImage/" + str(image.filename), "/root/DetectedImage/" + str(image.filename.split(".")[0]+".png"),
-                image.username,))
+                image.filename,image.username,))
             new_thread.start()
             break
     return 1
