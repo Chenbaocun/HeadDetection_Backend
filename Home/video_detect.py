@@ -152,7 +152,7 @@ def video_detect(input_video,output_video,filename,username,):
             break
     elif(undetected_image):
         for image in undetected_image:
-            new_thread = threading.Thread(target=video_detect, name="video_detect", args=(
+            new_thread = threading.Thread(target=video_detect, args=(
                 "/root/AbnormalImage/" + str(image.filename), "/root/DetectedImage/" + str(image.filename.split(".")[0]+".png"),
                 image.username,))
             new_thread.start()

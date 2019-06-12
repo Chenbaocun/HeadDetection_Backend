@@ -119,7 +119,7 @@ def image_detect(input_path,output_path,filename,username):
     undetected_image=AbnormalImage.objects.filter(hascalculated=0)
     if undetected_image:
         for image in undetected_image:
-            new_thread = threading.Thread(target=image_detect, name="video_detect", args=(
+            new_thread = threading.Thread(target=image_detect, args=(
                 "/root/AbnormalImage/" + str(image.filename), "/root/DetectedImage/" + str(image.filename.split(".")[0]+".png"),
                 image.username,))
             new_thread.start()

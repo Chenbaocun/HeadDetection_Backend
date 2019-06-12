@@ -211,7 +211,7 @@ def abnormal_image(request):
         if (len(threading.enumerate()) > 3):
             print("线程已经存在了")
         else:
-            new_thread = threading.Thread(target=image_detect, name="video_detect", args=(
+            new_thread = threading.Thread(target=image_detect, name="image_detect", args=(
                 "/root/AbnormalImage/" + str(abnormal_image), "/root/DetectedImage/" + str(abnormal_image), str(abnormal_image), request.user,))
             new_thread.start()
         return HttpResponse(1)
