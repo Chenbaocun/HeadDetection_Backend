@@ -46,6 +46,7 @@ urlpatterns = [
     path('image_play/', views.image_play),
     path('getHistory/', views.getHistory),
     path('setTarget_app/', views.setTarget_app),
+    path('getTarget/', views.getTarget),
 
 
 
