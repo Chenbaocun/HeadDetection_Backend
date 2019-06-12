@@ -135,7 +135,7 @@ def video_detect(input_video,output_video,filename,username,):
 
     out_video.release()
     end = time.time()
-    Uploadvideos.objects.filter(username=username,filename=filename).update(hascalculated=1,result=count)
+    Uploadvideos.objects.filter(username=username,filename=filename).update(hascalculated=1)
     print("视频计算结束，时间为: ", end - start)
     input_path='/root/DetectedVideos/'+filename
     output_path='/root/DetectedVideos_AVC/'+filename
