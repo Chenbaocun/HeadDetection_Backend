@@ -158,6 +158,7 @@ class OnlineDevices(models.Model):
 class OnlineUser(models.Model):
     username = models.CharField(max_length=255, blank=True, null=True)
     online = models.CharField(max_length=255, blank=True, null=True)
+    target = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         managed = False
