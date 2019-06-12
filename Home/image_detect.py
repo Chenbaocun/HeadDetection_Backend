@@ -116,12 +116,12 @@ def image_detect(input_path,output_path,filename,username):
     plt.subplots_adjust(top=1, bottom=0, left=0, right=1, hspace=0, wspace=0)
     plt.margins(0, 0)
     filename=filename.split('.')[0]
-    plt.savefig(output_path+filename+"jpg")
+    plt.savefig(output_path+filename+".jpg")
     undetected_image=AbnormalImage.objects.filter(hascalculated=0)
     if undetected_image:
         for image in undetected_image:
             new_thread = threading.Thread(target=image_detect, args=(
-                "/root/AbnormalImage/" + str(image.filename), "/root/DetectedImage/" + str(image.filename.split(".")[0]+".png"),
+                "/root/AbnormalImage/" + str(image.filename), "/root/DetectedImage/" + str(image.filename.split(".")[0]+".jpg"),
                 image.filename,image.username,))
             new_thread.start()
             break

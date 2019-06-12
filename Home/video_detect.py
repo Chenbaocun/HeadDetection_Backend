@@ -143,7 +143,6 @@ def video_detect(input_video,output_video,filename,username,):
     ff.run()
     print("格式转换成功")
     undetected_videos=Uploadvideos.objects.filter(hascalculated=0)
-    undetected_image=AbnormalImage.objects.filter(hascalculated=0)
     if undetected_videos:
         for video in undetected_videos:
             new_thread = threading.Thread(target=video_detect, args=(
@@ -151,10 +150,11 @@ def video_detect(input_video,output_video,filename,username,):
                 video.username,))
             new_thread.start()
             break
-    elif(undetected_image):
+    else:
+        undetected_image = AbnormalImage.objects.filter(hascalculated=0)
         for image in undetected_image:
             new_thread = threading.Thread(target=image_detect, args=(
-                "/root/AbnormalImage/" + str(image.filename), "/root/DetectedImage/" + str(image.filename.split(".")[0]+".png"),
+                "/root/AbnormalImage/" + str(image.filename), "/root/DetectedImage/" + str(image.filename.split(".")[0]+".jpg"),
                 image.filename,image.username,))
             new_thread.start()
             break
