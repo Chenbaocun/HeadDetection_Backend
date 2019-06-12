@@ -1,6 +1,9 @@
 # coding: utf-8
+import threading
+
 import numpy as np
 import os
+from .models import NumThreshold, AbnormalImage
 import tensorflow as tf
 import matplotlib as mlp
 mlp.use('Agg')
@@ -30,7 +33,7 @@ def load_image_into_numpy_array(image):
   return np.array(image.getdata()).reshape(
       (im_height, im_width, 3)).astype(np.uint8)
 
-TEST_IMAGE_PATHS = '/root/AbnormalImage/chenbaocun###2019年06月09日_14时20分39秒.png'
+# TEST_IMAGE_PATHS = '/root/AbnormalImage/chenbaocun###2019年06月09日_14时20分39秒.png'
 IMAGE_SIZE = (4.8, 4.8)
 
 
@@ -73,36 +76,58 @@ def run_inference_for_single_image(image, graph):
       if 'detection_masks' in output_dict:
         output_dict['detection_masks'] = output_dict['detection_masks'][0]
   return output_dict
-threshold=5
-# for image_path in TEST_IMAGE_PATHS:
-image = Image.open(TEST_IMAGE_PATHS)
-image=image.convert("RGB")
-(im_width, im_height) = image.size
-image_np = load_image_into_numpy_array(image)
-image_np_expanded = np.expand_dims(image_np, axis=0)
-output_dict = run_inference_for_single_image(image_np_expanded, detection_graph)
-count=0
-for i in output_dict['detection_scores']:
-    if i >0.5:
-        count+=1
-vis_util.visualize_boxes_and_labels_on_image_array(
-      image_np,
-      output_dict['detection_boxes'],
-      output_dict['detection_classes'],
-      output_dict['detection_scores'],
-      category_index,
-      instance_masks=output_dict.get('detection_masks'),
-      use_normalized_coordinates=True,
-      line_thickness=8)
-plt.figure(figsize=IMAGE_SIZE)
-plt.imshow(image_np)
-plt.text(240, 30, 'Total:'+str(count),fontdict={'family': 'DejaVuSans','color':  'red','weight': 'bold','size': 16,})
-plt.axis('off')
-plt.gca().xaxis.set_major_locator(plt.NullLocator())
-plt.gca().yaxis.set_major_locator(plt.NullLocator())
-plt.subplots_adjust(top=1,bottom=0,left=0,right=1,hspace =0, wspace =0)
-plt.margins(0,0)
-plt.savefig('chenbaocun###2019年06月09日_14时20分39秒.jpg')
+
+
+def image_detect(input_path,output_path,filename,username):
+    a=NumThreshold.objects.filter(username=username)
+    threshold = a[0].threshold
+    # for image_path in TEST_IMAGE_PATHS:
+    image = Image.open(input_path)
+    image = image.convert("RGB")
+    (im_width, im_height) = image.size
+    image_np = load_image_into_numpy_array(image)
+    image_np_expanded = np.expand_dims(image_np, axis=0)
+    output_dict = run_inference_for_single_image(image_np_expanded, detection_graph)
+    count = 0
+    for i in output_dict['detection_scores']:
+        if i > 0.5:
+            count += 1
+    vis_util.visualize_boxes_and_labels_on_image_array(
+        image_np,
+        output_dict['detection_boxes'],
+        output_dict['detection_classes'],
+        output_dict['detection_scores'],
+        category_index,
+        instance_masks=output_dict.get('detection_masks'),
+        use_normalized_coordinates=True,
+        line_thickness=8)
+    plt.figure(figsize=IMAGE_SIZE)
+    plt.imshow(image_np)
+    if(count>threshold):
+        plt.text(240, 30, 'Total:' + str(count),
+                 fontdict={'family': 'DejaVuSans', 'color': 'red', 'weight': 'bold', 'size': 16, })
+    else:
+        plt.text(240, 30, 'Total:' + str(count),
+                 fontdict={'family': 'DejaVuSans', 'color': 'green', 'weight': 'bold', 'size': 16, })
+    plt.axis('off')
+    plt.gca().xaxis.set_major_locator(plt.NullLocator())
+    plt.gca().yaxis.set_major_locator(plt.NullLocator())
+    plt.subplots_adjust(top=1, bottom=0, left=0, right=1, hspace=0, wspace=0)
+    plt.margins(0, 0)
+    filename=filename.split('.')[0]
+    plt.savefig(output_path+filename+"jpg")
+    undetected_image=AbnormalImage.objects.filter(hascalculated=0)
+    if undetected_image:
+        for image in undetected_image:
+            new_thread = threading.Thread(target=image_detect, name="video_detect", args=(
+                "/root/AbnormalImage/" + str(image.filename), "/root/DetectedImage/" + str(image.filename.split(".")[0]+".png"),
+                image.username,))
+            new_thread.start()
+            break
+
+
+    return 1
+
 
 # if (count > threshold):
 #     image_np = cv2.putText(image_np, "TotalNum:" + str(count), (int(im_width *0.8), int(im_height*0.05)),

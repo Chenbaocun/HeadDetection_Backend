@@ -15,6 +15,7 @@ import cv2
 from matplotlib import pyplot as plt
 from .models import Uploadvideos
 from .models import NumThreshold
+from .models import AbnormalImage
 from ffmpy import FFmpeg
 start = time.time()
 
@@ -141,9 +142,19 @@ def video_detect(input_video,output_video,filename,username,):
     ff.run()
     print("格式转换成功")
     undetected_videos=Uploadvideos.objects.filter(hascalculated=0)
-    for video in undetected_videos:
-        new_thread = threading.Thread(target=video_detect, args=(
-            "/root/UploadVideos/" + video.filename, "/root/DetectedVideos/" + video.filename, video.filename, video.username,))
-        new_thread.start()
-        break
+    undetected_image=AbnormalImage.objects.filter(hascalculated=0)
+    if undetected_videos:
+        for video in undetected_videos:
+            new_thread = threading.Thread(target=video_detect, args=(
+                "/root/UploadVideos/" + video.filename, "/root/DetectedVideos/" + video.filename, video.filename,
+                video.username,))
+            new_thread.start()
+            break
+    elif(undetected_image):
+        for image in undetected_image:
+            new_thread = threading.Thread(target=video_detect, name="video_detect", args=(
+                "/root/AbnormalImage/" + str(image.filename), "/root/DetectedImage/" + str(image.filename.split(".")[0]+".png"),
+                image.username,))
+            new_thread.start()
+            break
     return 1

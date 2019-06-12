@@ -7,6 +7,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from .models import *
 from .video_detect import video_detect
+from .image_detect import image_detect
 import datetime
 import simplejson
 from wsgiref.util import FileWrapper
@@ -206,6 +207,13 @@ def abnormal_image(request):
         for chunk in abnormal_image.chunks():
             file.write(chunk)
         file.close()
+        print("异常图片请求发现线程总数："+str(threading.enumerate()))
+        if (len(threading.enumerate()) > 3):
+            print("线程已经存在了")
+        else:
+            new_thread = threading.Thread(target=image_detect, name="video_detect", args=(
+                "/root/AbnormalImage/" + str(abnormal_image), "/root/DetectedImage/" + str(abnormal_image), str(abnormal_image), request.user,))
+            new_thread.start()
         return HttpResponse(1)
 
 def get_threshold(request):
@@ -324,7 +332,7 @@ def image_play(request):
     filename = request.GET.get("filename")
     filename = urllib.parse.unquote(filename)
     # print(filename)
-    path = '/root/AbnormalImage/' + str(username) + "###" + str(filename)
+    path = '/root/DetectedImage/' + str(username) + "###" + str(filename.split('.')[0]+".jpg")
     with open(path, 'rb') as f:
         image_data = f.read()
-    return HttpResponse(image_data, content_type='image/png')
+    return HttpResponse(image_data, content_type='image/jpg')
