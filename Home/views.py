@@ -352,3 +352,15 @@ def getHistory(request):
         context={"data":context}
         # print(context)
         return HttpResponse(simplejson.dumps(context))
+
+def setTarget_app(request):
+    if request.method == 'POST':
+        username = request.POST.get("username")
+        target=request.POST.get("target")
+        a=OnlineUser.objects.filter(username=username)
+        if a:
+            OnlineUser.objects.filter(username=username).update(target=target)
+        else:
+            OnlineUser.objects.filter(username=username,online=0,target=target)
+        return HttpResponse(1)
+
