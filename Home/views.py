@@ -385,10 +385,10 @@ def image_play_app(request):
     username=request.GET.get("username")
     num=urllib.parse.unquote(num)
     username = urllib.parse.unquote(username)
-    a=AbnormalImage.objects.filter(hascalculated=1)
+    a=AbnormalImage.objects.filter(hascalculated=1,username=username)
     filename=a[int(num)].filename
     # print(filename)
-    path = '/root/DetectedImage/' + str(username) + "###" + str(filename.split('.')[0] + ".jpg")
+    path = '/root/DetectedImage/'+ str(filename.split('.')[0] + ".jpg")
     with open(path, 'rb') as f:
         image_data = f.read()
     return HttpResponse(image_data, content_type='image/jpg')
