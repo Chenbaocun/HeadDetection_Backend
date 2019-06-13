@@ -51,7 +51,7 @@ urlpatterns = [
     path('getPlacecount/', views.getPlacecount),
     path('gethighest/', views.gethighest),
 
-    
+
 
 
 
