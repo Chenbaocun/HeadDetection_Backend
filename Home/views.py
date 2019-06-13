@@ -404,4 +404,22 @@ def getPlacecount(request):
         ret=str(len(a))+"#"+str(len(b))+"#"+str(len(c))+"#"+str(len(d))+"#"+str(len(e))
         return HttpResponse(ret)
 
-
+def gethighest(request):
+    if request.method == 'POST':
+        username = request.user
+        a = AbnormalImage.objects.filter(location=1)
+        b = AbnormalImage.objects.filter(location=2)
+        c = AbnormalImage.objects.filter(location=3)
+        d = AbnormalImage.objects.filter(location=4)
+        e = AbnormalImage.objects.filter(location=5)
+        re=[]
+        re.append(len(a))
+        re.append(len(b))
+        re.append(len(c))
+        re.append(len(d))
+        re.append(len(e))
+        b = sorted(range(len(a)), key=lambda k: a[k])
+        c=Targetname.objects.filter(num=b[len(b)-1])
+        place=c[0].target
+        count=re[b[len(b)-1]]
+        return HttpResponse(place+"#"+count)
