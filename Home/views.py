@@ -191,10 +191,13 @@ def count_app(request):
         count = request.POST.get('count')
         mobiletype=request.POST.get('mobiletype')
         date=datetime.datetime.now()
+        a=OnlineUser.objects.filter(username=username,online=1)
+        target=a[0].target
+        print(target)
         # print(username)
         # print(count)
         # print(mobiletype)
-        RealtimeCount.objects.create(username=username,count=count,mobiletype=mobiletype,date=date)
+        RealtimeCount.objects.create(username=username,count=count,mobiletype=mobiletype,date=date,location=target)
         return HttpResponse(1)
 def abnormal_image(request):
     if request.method=='POST':
