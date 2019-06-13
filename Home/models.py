@@ -12,6 +12,7 @@ class AbnormalImage(models.Model):
     filename = models.CharField(max_length=255, blank=True, null=True)
     hascalculated = models.CharField(max_length=255, blank=True, null=True)
     result = models.CharField(max_length=255, blank=True, null=True)
+    location = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         managed = False
