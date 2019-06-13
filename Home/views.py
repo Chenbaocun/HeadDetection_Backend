@@ -380,3 +380,16 @@ def getTarget(request):
         else:
             return HttpResponse()
 
+def image_play_app(request):
+    num = request.GET.get("num")
+    username=request.GET.get("username")
+    num=urllib.parse.unquote(num)
+    username = urllib.parse.unquote(username)
+    a=AbnormalImage.objects.filter(hascalculated=1)
+    filename=a[int(num)].filename
+    # print(filename)
+    path = '/root/DetectedImage/' + str(username) + "###" + str(filename.split('.')[0] + ".jpg")
+    with open(path, 'rb') as f:
+        image_data = f.read()
+    return HttpResponse(image_data, content_type='image/jpg')
+
