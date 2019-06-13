@@ -50,6 +50,7 @@ urlpatterns = [
     path('image_play_app/', views.image_play_app),
     path('getPlacecount/', views.getPlacecount),
     path('gethighest/', views.gethighest),
+    path('getRank/', views.getRank),
 
 
 
