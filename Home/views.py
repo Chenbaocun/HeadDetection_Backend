@@ -319,10 +319,12 @@ def getAbnormalImageList(request):
         queryResult = AbnormalImage.objects.filter(username=user)
         context=[]
         for i in queryResult:
+            a=Targetname.objects.filter(num=i.location)
             row = {}
             row['date']=i.filename.split('###')[1].split(".")[0]
             row['filename']=str(i.filename).split('###')[1]
             row['result']=i.result
+            row['target']=a[0].target
             if i.hascalculated=='1':
                 row['status']='计算完成'
             else:
