@@ -48,6 +48,9 @@ urlpatterns = [
     path('setTarget_app/', views.setTarget_app),
     path('getTarget/', views.getTarget),
     path('image_play_app/', views.image_play_app),
+    path('getPlacecount/', views.getPlacecount),
+
+
 
 
 

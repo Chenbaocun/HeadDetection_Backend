@@ -393,3 +393,15 @@ def image_play_app(request):
         image_data = f.read()
     return HttpResponse(image_data, content_type='image/jpg')
 
+def getPlacecount(request):
+    if request.method == 'POST':
+        username = request.user
+        a = AbnormalImage.objects.filter(username=username,location=1)
+        b = AbnormalImage.objects.filter(username=username,location=2)
+        c = AbnormalImage.objects.filter(username=username,location=3)
+        d = AbnormalImage.objects.filter(username=username,location=4)
+        e = AbnormalImage.objects.filter(username=username,location=5)
+        ret=str(len(a))+"#"+str(len(b))+"#"+str(len(c))+"#"+str(len(d))+"#"+str(len(e))
+        return HttpResponse(ret)
+
+
