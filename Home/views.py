@@ -452,3 +452,23 @@ def getRank(request):
         context.append(row)
     context={"data":context}
     return HttpResponse(simplejson.dumps(context))
+
+def getMessageApp(request):
+    if request.method == 'POST':
+        a = AbnormalImage.objects.filter(location=1)
+        b = AbnormalImage.objects.filter(location=2)
+        c = AbnormalImage.objects.filter(location=3)
+        d = AbnormalImage.objects.filter(location=4)
+        e = AbnormalImage.objects.filter(location=5)
+        re = []
+        re.append(len(a))
+        re.append(len(b))
+        re.append(len(c))
+        re.append(len(d))
+        re.append(len(e))
+        b = sorted(range(len(re)), key=lambda k: re[k])
+        c = Targetname.objects.filter(num=b[len(b) - 1] + 1)
+        place = c[0].target
+        count = re[b[len(b) - 1]]
+        return HttpResponse(str(place) + "#" + str(count))
+
