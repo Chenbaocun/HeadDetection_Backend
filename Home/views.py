@@ -419,7 +419,7 @@ def gethighest(request):
         re.append(len(d))
         re.append(len(e))
         b = sorted(range(len(re)), key=lambda k: re[k])
-        c=Targetname.objects.filter(num=b[len(b)-1])
+        c=Targetname.objects.filter(num=b[len(b)])
         place=c[0].target
         count=re[b[len(b)-1]]
         return HttpResponse(str(place)+"#"+str(count))
