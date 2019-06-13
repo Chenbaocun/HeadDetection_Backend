@@ -423,3 +423,31 @@ def gethighest(request):
         place=c[0].target
         count=re[b[len(b)-1]]
         return HttpResponse(str(place)+"#"+str(count))
+
+
+
+def getRank(request):
+    a=OnlineUser.objects.all()
+    avgSort=[0,0,0,0,0]
+    for i in a:
+        b=RealtimeCount.objects.filter(location=i.target)
+        sum=0
+        for j in range(len(b)//2,len(b)):
+            sum=sum+b[j].count
+        avercount=sum//(len(b)//2)
+        avgSort[int(i.target)-1]=avgSort
+    row={}
+    context=[]
+    for i in a:
+        b = sorted(range(len(avgSort)), key=lambda k: avgSort[k])
+        row['order']=b.index(int(i.target)-1)
+        row['target']=i.target
+        b=RealtimeCount.objects.filter(location=i.target)
+        sum=0
+        for j in range(len(b)//2,len(b)):
+            sum=sum+b[j].count
+        avercount=sum//(len(b)//2)
+        row['averageNum']=avercount
+        context.append(row)
+    context={"data":context}
+    return HttpResponse(simplejson.dumps(context))
