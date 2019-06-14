@@ -449,10 +449,10 @@ def getRank(request):
     context=[]
     c = sorted(range(len(avgSort)), key=lambda k: avgSort[k])
     for i in set(location):
-        row['order']=(c.index(int(i.target)-1)+2)%5
+        row['order']=(c.index(int(i)-1)+2)%5
         ret=Targetname.objects.filter(num=i.target)
         row['target']=ret[0].target
-        b=RealtimeCount.objects.filter(location=i.target)
+        b=RealtimeCount.objects.filter(location=i)
         sum=0
         for j in range(len(b)//2,len(b)):
             sum=sum+b[j].count
