@@ -373,7 +373,7 @@ def setTarget_app(request):
         if a:
             OnlineUser.objects.filter(username=username).update(target=target)
         else:
-            OnlineUser.objects.filter(username=username,online=0,target=target)
+            OnlineUser.objects.create(username=username,online=0,target=target)
         return HttpResponse(1)
 
 def getTarget(request):
