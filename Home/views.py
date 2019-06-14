@@ -463,7 +463,7 @@ def getRank(request):
             sum=sum+b[j].count
         avercount=sum//(len(b)//2)
         row[2]=avercount
-        context.append(str(row))
+        context.append(row)
     a=np.array((context))
     np.sort(a,axis=0)
     print(a)
