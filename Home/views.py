@@ -453,6 +453,7 @@ def getRank(request):
         print(i)
         row['order']=(c.index(int(i)-1)+2)%5
         ret=Targetname.objects.filter(num=i)
+        print(ret[0].target)
         row['target']=ret[0].target
         b=RealtimeCount.objects.filter(location=i)
         sum=0
