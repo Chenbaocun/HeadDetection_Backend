@@ -448,7 +448,7 @@ def getRank(request):
     row={}
     context=[]
     c = sorted(range(len(avgSort)), key=lambda k: avgSort[k])
-    for i in a:
+    for i in set(location):
         row['order']=(c.index(int(i.target)-1)+2)%5
         ret=Targetname.objects.filter(num=i.target)
         row['target']=ret[0].target
