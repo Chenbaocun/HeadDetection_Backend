@@ -298,6 +298,9 @@ def real_time_count(request):
         else:
             return HttpResponse(-1)
 
+
+
+
 def exit_count_app(request):
     if request.method=='POST':
         username=request.POST.get('username')
