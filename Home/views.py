@@ -464,8 +464,8 @@ def getRank(request):
         avercount=sum//(len(b)//2)
         row[2]=avercount
         context.append(row)
-    a=np.array((context))
     dt = np.dtype([('order', int),('target','S10') ,('averageNum', int)])
+    a=np.array((context),dtype=dt)
     np.sort(a,order="order")
     print(a)
 
