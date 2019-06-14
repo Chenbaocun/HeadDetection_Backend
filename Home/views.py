@@ -434,8 +434,11 @@ def gethighest(request):
 
 def getRank(request):
     a=OnlineUser.objects.all()
+    location=[]
+    for ii in a:
+        location.append(ii.target)
     avgSort=[0,0,0,0,0]
-    for i in a:
+    for i in set(location):
         b=RealtimeCount.objects.filter(location=i.target)
         sum=0
         for j in range(len(b)//2,len(b)):
