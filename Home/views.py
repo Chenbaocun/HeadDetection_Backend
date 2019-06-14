@@ -354,7 +354,7 @@ def image_play(request):
 def getHistory(request):
     if request.method=='POST':
         username = request.user
-        queryResult = RealtimeCount.objects.filter(username=username)
+        queryResult = RealtimeCount.objects.all()
         context=[]
         for i in queryResult:
             row = {}
