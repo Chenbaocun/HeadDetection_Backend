@@ -466,7 +466,7 @@ def getRank(request):
         context.append(row)
     # print(context)
     a=np.array((context))
-    a1=np.argsort(a[:, 1])
+    a1=np.argsort(a[:, 0])
     a = a[a1].tolist()
     print(a)
     context=[]
