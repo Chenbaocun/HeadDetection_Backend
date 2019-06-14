@@ -446,10 +446,11 @@ def getRank(request):
             sum=sum+b[j].count
         avercount=sum//(len(b)//2)
         avgSort[int(i)-1]=avercount
-    row={}
+
     context=[]
     c = sorted(range(len(avgSort)), key=lambda k: avgSort[k])
     for i in set(location):
+        row = {}
         print(i)
         row['order']=(c.index(int(i)-1)+2)%5
         ret=Targetname.objects.filter(num=i)
