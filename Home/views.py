@@ -452,10 +452,10 @@ def getRank(request):
     c = sorted(range(len(avgSort)), key=lambda k: avgSort[k])
     for i in set(location):
         row = [0,0,0]
-        print(i)
+        # print(i)
         row[0]=(c.index(int(i)-1)+2)%5
         ret=Targetname.objects.filter(num=i)
-        print(ret[0].target)
+        # print(ret[0].target)
         row[1]=ret[0].target
         b=RealtimeCount.objects.filter(location=i)
         sum=0
@@ -464,13 +464,18 @@ def getRank(request):
         avercount=sum//(len(b)//2)
         row[2]=avercount
         context.append(row)
-    print(context)
+    # print(context)
     a=np.array((context))
     a1=np.argsort(a[:, 1])
     a = a[a1].tolist()
-
     print(a)
-
+    context=[]
+    for i in a:
+        row={}
+        row['order']=i[0]
+        row['target']=i[1]
+        row['averageNum']=i[2]
+        context.append(row)
     context={"data":context}
     return HttpResponse(simplejson.dumps(context))
 
