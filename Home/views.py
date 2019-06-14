@@ -464,10 +464,10 @@ def getRank(request):
         avercount=sum//(len(b)//2)
         row['averageNum']=avercount
         context.append(row)
-    a=np.array(str(context))
-    np.sort(a,axis=1)
-    context=eval(a)
-    context={"data":context}
+    # a=np.array(str(context))
+    # np.sort(a,axis=1)
+    # context=eval(a)
+    # context={"data":context}
     return HttpResponse(simplejson.dumps(context))
 
 def getMessageApp(request):
