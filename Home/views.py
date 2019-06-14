@@ -499,11 +499,11 @@ def getMessageApp(request):
         return HttpResponse(str(place) + "#" + str(count))
 
 def download(request):
-    with open('/root/placeCount.apk','rb') as f:
+    with open('/root/PoliceCount.apk','rb') as f:
         apk=f.read()
     response = HttpResponse(apk)
     response['Content-Type'] = 'application/vnd.android.package-archive'
-    response['Content-Disposition'] = 'attachment;filename="placeCount.apk"'
+    response['Content-Disposition'] = 'attachment;filename="PoliceCount.apk"'
     return response
 
 
