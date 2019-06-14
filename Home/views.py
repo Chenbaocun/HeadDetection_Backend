@@ -451,18 +451,18 @@ def getRank(request):
     context=[]
     c = sorted(range(len(avgSort)), key=lambda k: avgSort[k])
     for i in set(location):
-        row = {}
+        row = [0,0,0]
         print(i)
-        row['order']=(c.index(int(i)-1)+2)%5
+        row[0]=(c.index(int(i)-1)+2)%5
         ret=Targetname.objects.filter(num=i)
         print(ret[0].target)
-        row['target']=ret[0].target
+        row[1]=ret[0].target
         b=RealtimeCount.objects.filter(location=i)
         sum=0
         for j in range(len(b)//2,len(b)):
             sum=sum+b[j].count
         avercount=sum//(len(b)//2)
-        row['averageNum']=avercount
+        row[2]=avercount
         context.append(str(row))
     a=np.array((context))
     np.sort(a,axis=0)
