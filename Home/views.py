@@ -465,8 +465,8 @@ def getRank(request):
         row['averageNum']=avercount
         context.append(str(row))
     a=np.array((context))
-    print(a)
     np.sort(a,axis=0)
+    print(a)
     context=eval(a)
     context={"data":context}
     return HttpResponse(simplejson.dumps(context))
