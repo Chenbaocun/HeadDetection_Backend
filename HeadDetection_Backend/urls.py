@@ -52,8 +52,9 @@ urlpatterns = [
     path('gethighest/', views.gethighest),
     path('getRank/', views.getRank),
     path('getMessageApp/', views.getMessageApp),
+    path('download/', views.download),
 
-
+    
 
 
 ]
