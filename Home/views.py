@@ -1,4 +1,5 @@
 import mimetypes
+import numpy as np
 import threading
 from django.contrib import auth
 from django.contrib.auth import authenticate
@@ -450,7 +451,7 @@ def getRank(request):
     context=[]
     c = sorted(range(len(avgSort)), key=lambda k: avgSort[k])
     for i in set(location):
-        row = {}
+        row = []
         print(i)
         row['order']=(c.index(int(i)-1)+2)%5
         ret=Targetname.objects.filter(num=i)
@@ -463,6 +464,9 @@ def getRank(request):
         avercount=sum//(len(b)//2)
         row['averageNum']=avercount
         context.append(row)
+    a=np.array(str(context))
+    np.sort(a,axis=1)
+    context=eval(a)
     context={"data":context}
     return HttpResponse(simplejson.dumps(context))
 
