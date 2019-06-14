@@ -434,7 +434,7 @@ def gethighest(request):
 
 
 def getRank(request):
-    a=OnlineUser.objects.all()
+    a=OnlineUser.objects.filter(online=1)
     location=[]
     for ii in a:
         location.append(ii.target)
