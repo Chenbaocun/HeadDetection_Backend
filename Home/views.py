@@ -465,6 +465,7 @@ def getRank(request):
         row['averageNum']=avercount
         context.append(row)
     a=np.array(str(context))
+    print(a)
     np.sort(a,axis=0)
     context=eval(a)
     context={"data":context}
