@@ -444,7 +444,7 @@ def getRank(request):
         for j in range(len(b)//2,len(b)):
             sum=sum+b[j].count
         avercount=sum//(len(b)//2)
-        avgSort[int(i.target)-1]=avercount
+        avgSort[int(i)-1]=avercount
     row={}
     context=[]
     c = sorted(range(len(avgSort)), key=lambda k: avgSort[k])
