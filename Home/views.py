@@ -467,7 +467,7 @@ def getRank(request):
     a=np.array((context))
     np.sort(a,axis=0)
     print(a)
-    context=eval(a)
+
     context={"data":context}
     return HttpResponse(simplejson.dumps(context))
 
