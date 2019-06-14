@@ -438,7 +438,7 @@ def getRank(request):
     for ii in a:
         location.append(ii.target)
     avgSort=[0,0,0,0,0]
-    print(location)
+    # print(location)
     for i in set(location):
         b=RealtimeCount.objects.filter(location=i)
         sum=0
@@ -450,6 +450,7 @@ def getRank(request):
     context=[]
     c = sorted(range(len(avgSort)), key=lambda k: avgSort[k])
     for i in set(location):
+        print(i)
         row['order']=(c.index(int(i)-1)+2)%5
         ret=Targetname.objects.filter(num=i)
         row['target']=ret[0].target
