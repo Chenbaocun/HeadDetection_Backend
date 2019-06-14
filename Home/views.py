@@ -284,7 +284,10 @@ def real_time_count(request):
         username = request.user
         b=OnlineUser.objects.filter(username=username,online=1)
         c=NumThreshold.objects.filter(username=username)
-        threshold=c[0].threshold
+        if c:
+            threshold = c[0].threshold
+        else:
+            return HttpResponse(-1)
         # print(b)
         if b:
             a = RealtimeCount.objects.filter(username=username)
