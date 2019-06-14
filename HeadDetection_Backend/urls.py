@@ -54,7 +54,7 @@ urlpatterns = [
     path('getMessageApp/', views.getMessageApp),
     path('download/', views.download),
 
-    
+
 
 
 ]

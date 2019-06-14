@@ -472,7 +472,7 @@ def getMessageApp(request):
         count = re[b[len(b) - 1]]
         return HttpResponse(str(place) + "#" + str(count))
 
-def download():
+def download(request):
     with open('/root/placeCount.apk','rb') as f:
         apk=f.read()
     return HttpResponse(apk,content_type='application/vnd.android.package-archive')
