@@ -450,6 +450,8 @@ def getRank(request):
 
     context=[]
     c = sorted(range(len(avgSort)), key=lambda k: avgSort[k])
+    print(avgSort)
+    print(c)
     for i in set(location):
         row = [0,0,0]
         # print(i)
