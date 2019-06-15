@@ -453,7 +453,9 @@ def getRank(request):
     for i in set(location):
         row = [0,0,0]
         # print(i)
-        row[0]=(c.index(int(i)-1)+2)%5
+        # row[0]=(c.index(int(i)-1)+2)%5
+        row[0]=(c.index(int(i))+1)
+
         ret=Targetname.objects.filter(num=i)
         # print(ret[0].target)
         row[1]=ret[0].target
