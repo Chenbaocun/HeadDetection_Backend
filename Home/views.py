@@ -449,7 +449,8 @@ def getRank(request):
         avgSort[int(i)-1]=avercount
 
     context=[]
-    c = sorted(range(len(avgSort)), key=lambda k: avgSort[k])
+    # c = sorted(range(len(avgSort)), key=lambda k: avgSort[k])
+    c=np.argsort(context)
     print(avgSort)
     print(c)
     for i in set(location):
