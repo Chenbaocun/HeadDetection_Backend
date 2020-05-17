@@ -80,7 +80,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',  # 或者使用 mysql.connector.django，但是大多数用的是前边这种
         'NAME': 'headdetection',
         'USER': 'root',
-        'PASSWORD': '52nichenbaocun',
+        'PASSWORD': '*',
         'HOST': 'localhost',
         'PORT': '3306',
         'OPTIONS': {
